@@ -21,7 +21,7 @@
      align-items: center;
      padding: 5px;
      background-color: #ffffff;
-     height: 100px;
+     height: 150px;
  }
 
  .logo {
@@ -30,7 +30,7 @@
  }
 
  .logo img {
-     height: 130px;
+     height: 200px;
      /* ロゴの高さを適切に調整 */
  }
 
@@ -47,8 +47,23 @@
  }
 
  .question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
      background-color: #94c8ff;
+     height: 40px;
+     width: 150px;
+    margin-left: auto;
+    text-align: center;
  }
+ .questionn{
+    text-decoration:none;
+ }
+
+ .question::after{
+    background-color: #dadada;
+ }
+ 
 
  .a1 {
      background-color: #ffffff;
@@ -58,8 +73,8 @@
      width: 1200px;
      height: 85px;
      flex-shrink: 0;
-     
-     
+
+
  }
 
  .aaa {
@@ -67,12 +82,14 @@
      height: 400px;
      width: 700px;
      margin-top: 50px;
+     margin-left: auto;
  }
 
  .bbb {
      background-color: #ffffff;
      height: 200px;
      width: 350px;
-     margin-left: 20px;
      margin-top: 50px;
+     margin-left: 20px;
+     margin-right: auto;
  }

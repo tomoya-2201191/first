@@ -18,15 +18,12 @@
             <div class="logo">
                 <img src="img/asootie.png" alt="ロゴ">
             </div>
+
             <form action="#">
                 <input type="text" id="searchInput" placeholder="Q&Aを探す">
                 <button type="submit">検索</button>
             </form>
-            <div class="icon">
-                <img src="img/icon.png" height="80" weight="100">
-            </div>
         </div>
-    </header>
         <script src="js/top.js"></script> <!-- JavaScriptファイルの読み込み -->
 </body>
 
