@@ -1,38 +1,78 @@
- /* *{
-  outline: 2px red solid;
-}   */
+ /* * {
+     outline: 2px red solid;
+ } */
 
-body {
-    background-image: url(../img/top-back2.png);
-}
+ .flex {
+     display: flex;
+ }
 
-.header-top {
-    height: 30px;
-    background-color: #94c8ff;
-}
+ body {
+     background-image: url(../img/top-back2.png);
+ }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px;
-    background-color: #ffffff;
-    height: 100px;
-}
+ .header-top {
+     height: 30px;
+     background-color: #94c8ff;
+ }
+
+ header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 5px;
+     background-color: #ffffff;
+     height: 100px;
+ }
 
  .logo {
-      margin-right: 20px; /*ロゴの左側の余白 */
-}  
+     margin-right: 20px;
+     /*ロゴの左側の余白 */
+ }
 
-.logo img {
-    height: 130px; /* ロゴの高さを適切に調整 */
-}
-.search {
-    display: flex;
-    align-items: center; /* 垂直方向の中央揃え */
-}
+ .logo img {
+     height: 130px;
+     /* ロゴの高さを適切に調整 */
+ }
 
-.search form {
-    display: flex;
-    align-items: center; /* 垂直方向の中央揃え */
-}
+ .search {
+     display: flex;
+     align-items: center;
+     /* 垂直方向の中央揃え */
+ }
+
+ .search form {
+     display: flex;
+     align-items: center;
+     /* 垂直方向の中央揃え */
+ }
+
+ .question {
+     background-color: #94c8ff;
+ }
+
+ .a1 {
+     background-color: #ffffff;
+     margin-top: 20px;
+     margin-left: auto;
+     margin-right: auto;
+     width: 1200px;
+     height: 85px;
+     flex-shrink: 0;
+     
+     
+ }
+
+ .aaa {
+     background-color: #ffffff;
+     height: 400px;
+     width: 700px;
+     margin-top: 50px;
+ }
+
+ .bbb {
+     background-color: #ffffff;
+     height: 200px;
+     width: 350px;
+     margin-left: 20px;
+     margin-top: 50px;
+ }

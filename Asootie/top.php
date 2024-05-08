@@ -12,6 +12,7 @@
 
 <body>
     <div class="header-top"></div>
+
     <header>
 
         <div class="search">
@@ -27,6 +28,15 @@
             </div>
         </div>
     </header>
+    <a class="question">aaaaaaaaaa</a>
+    <div class="a1"></div>
+
+    <div class="flex">
+
+    <div class="aaa"></div>
+    <div class="bbb"></div>
+
+    </div>
         <script src="js/top.js"></script> <!-- JavaScriptファイルの読み込み -->
 </body>
 
