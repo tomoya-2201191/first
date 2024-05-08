@@ -18,12 +18,11 @@
             <div class="logo">
                 <img src="img/asootie.png" alt="ロゴ">
             </div>
-            <div class="kensaku">
-                <form action="#">
-                    <input type="text" id="searchInput" placeholder="Q&Aを探す">
-                    <button type="submit">検索</button>
-                </form>
-            </div>
+
+            <form action="#">
+                <input type="text" id="searchInput" placeholder="Q&Aを探す">
+                <button type="submit">検索</button>
+            </form>
         </div>
         <script src="js/top.js"></script> <!-- JavaScriptファイルの読み込み -->
 </body>
