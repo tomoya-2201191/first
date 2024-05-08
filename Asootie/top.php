@@ -23,7 +23,7 @@
                 <button type="submit">検索</button>
             </form>
             <div class="icon">
-                <img src="img/icon.png" height="80" weight="130">
+                <img src="img/icon.png" height="80" weight="100">
             </div>
         </div>
     </header>
