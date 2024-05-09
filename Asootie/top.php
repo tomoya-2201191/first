@@ -15,31 +15,39 @@
 
     <header>
 
-        <div class="search">
-            <div class="logo">
-                <img src="img/asootie.png" alt="ロゴ">
-            </div>
-            <form action="#">
-                <input type="text" id="searchInput" placeholder="Q&Aを探す">
-                <button type="submit">検索</button>
-            </form>
-            <div class="icon">
-                <img src="img/icon.png" height="80" weight="100">
-            </div>
+
+        <div class="logo">
+            <img src="img/asootie.png" alt="ロゴ">
         </div>
+
+        <div class="search_box">
+
+            <form method="get" action="#" class="search">
+                <div class="searchForm">
+                    <input type="text" class="searchForm-input" placeholder="Q&Aを探す">
+                    <button type="submit" class="searchForm-submit"></button>
+                </div>
+            </form>
+        </div>
+
+        <div class="icon">
+            <img src="img/icon.png">
+        </div>
+
+
     </header>
     <div class="question">
-    <a class="questionn" href="question.php" >aaaaaaaaaa</a>
+        <a class="questionn" href="question.php">aaaaaaaaaa</a>
     </div>
     <div class="a1"></div>
 
     <div class="flex">
 
-    <div class="aaa"></div>
-    <div class="bbb"></div>
+        <div class="aaa"></div>
+        <div class="bbb"></div>
 
     </div>
-        <script src="js/top.js"></script> <!-- JavaScriptファイルの読み込み -->
+    <script src="js/top.js"></script> <!-- JavaScriptファイルの読み込み -->
 </body>
 
 </html>

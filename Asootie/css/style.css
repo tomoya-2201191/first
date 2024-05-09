@@ -17,7 +17,7 @@
 
  header {
      display: flex;
-     justify-content: space-between;
+     /* justify-content: center; */
      align-items: center;
      padding: 5px;
      background-color: #ffffff;
@@ -26,7 +26,6 @@
 
  .logo {
      margin-left: 50px;
-     /*ロゴの左側の余白 */
  }
 
  .logo img {
@@ -34,36 +33,93 @@
      /* ロゴの高さを適切に調整 */
  }
 
- .search {
-     display: flex;
-     align-items: center;
-     /* 垂直方向の中央揃え */
+ .icon {
+     margin-left: auto;
+     margin-right: 30px;
  }
 
- .search form {
-     display: flex;
-     align-items: center;
-     /* 垂直方向の中央揃え */
+ .icon img {
+     height: 80px;
  }
+
+
+ .search_box {
+     margin-left: auto;
+
+ }
+
+
+ input {
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+     padding: 10px;
+     margin: 5px 0;
+     border: 1px solid #999;
+     border-radius: 5px;
+ }
+
+ .searchForm {
+     position: relative;
+ }
+
+ .searchForm-input {
+     width: 100%;
+ }
+
+ .searchForm-submit {
+     position: absolute;
+     width: 38px;
+     height: 38px;
+     top: calc(50% - 19px);
+     right: 0;
+     border-radius: 0 4px 4px 0;
+     background: #999;
+ }
+
+ .searchForm-submit::before {
+     position: absolute;
+     content: '';
+     width: 15px;
+     height: 15px;
+     top: calc(50% - 9px);
+     left: calc(50% - 9px);
+     border-radius: 50%;
+     box-shadow: 0 0 0 2px #fff;
+ }
+
+ .searchForm-submit::after {
+     position: absolute;
+     content: '';
+     width: 8px;
+     height: 6px;
+     top: calc(50% + 6px);
+     left: calc(50% + 2px);
+     border-top: solid 2px #fff;
+     transform: rotate(45deg);
+ }
+
+
 
  .question {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+     display: flex;
+     justify-content: center;
+     align-items: center;
      background-color: #94c8ff;
      height: 40px;
      width: 150px;
-    margin-left: auto;
-    text-align: center;
- }
- .questionn{
-    text-decoration:none;
+     margin-left: auto;
+     text-align: center;
  }
 
- .question::{
-    background-color: #dadada;
+ .questionn {
+     text-decoration: none;
  }
- 
+
+ .question:: {
+     background-color: #dadada;
+ }
+
 
  .a1 {
      background-color: #ffffff;
