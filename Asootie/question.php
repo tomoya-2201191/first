@@ -25,22 +25,28 @@
 
 <header>
 
-    <div class="search">
-        <div class="logo">
+<div class="logo">
             <img src="img/asootie.png" alt="ロゴ">
         </div>
-        <form action="#">
-            <input type="text" id="searchInput" placeholder="Q&Aを探す">
-            <button type="submit">検索</button>
-        </form>
-        <div class="icon">
-            <img src="img/icon.png" height="80" weight="100">
+
+        <div class="search_box">
+
+            <form method="get" action="#" class="search">
+                <div class="searchForm">
+                    <input type="text" class="searchForm-input" placeholder="Q&Aを探す">
+                    <button type="submit" class="searchForm-submit"></button>
+                </div>
+            </form>
         </div>
-    </div>
+
+        <div class="icon">
+            <img src="img/icon.png">
+        </div>
 </header>
 <div class="question">
-<a class="questionn" href="question.php" >aaaaaaaaaa</a>
+    <a class="questionn" href="question.php" >aaaaaaaaaa</a>
 </div>
+
 <div class="a1"></div>
 
 <div class="flex">
@@ -51,8 +57,9 @@
     $sql=$pdo->query('select * from user');
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     echo '<div class="q_user">';
-    echo '<img src="img/icon.png" height="80" weight="100" class="icon">';
-    echo "<p>",$row['name'],"　さん","</p>";
+    echo '<img src="img/icon.png" height="80" weight="100">';
+    echo "<p>",$row['name'],"　さん","<br>";
+    echo "aaaa","</p>";
     echo '</div>';
     ?>
 </div>
