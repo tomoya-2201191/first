@@ -143,13 +143,19 @@
 
  }
 
- .aaa {
+ .left {
      background-color: #ffffff;
      height: 400px;
      width: 700px;
      margin-top: 50px;
      margin-left: auto;
  }
+
+.left-1{
+    background-color: #999;
+}
+
+
 
  .right {
      background-color: #ffffff;
