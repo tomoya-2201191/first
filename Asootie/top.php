@@ -27,7 +27,9 @@ require 'header.php';
             </div>
         </div>
     </div>
+
     <div class="right">
+
         <?php
 
         echo '<div class="category">';
@@ -44,6 +46,7 @@ require 'header.php';
         echo '<hr>';
         ?>
     </div>
+
 
 </div>
 
