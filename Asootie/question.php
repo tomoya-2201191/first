@@ -8,15 +8,28 @@ require 'header.php';
 
 <div class="flex">
 
-<div class="aaa">
+<div class="left">
     <?php
     $pdo= new PDO($connect,USER,PASS);
     $sql=$pdo->query('select * from user');
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     echo '<div class="q_user">';
-    echo '<img src="img/icon.png" height="80" weight="100" class="icon">';
-    echo "<p>",$row['name'],"　さん","<br>";
-    echo "STUDENT","</p>";
+    echo '<img src="img/icon.png" height="80" weight="100">';
+    echo '<div class="q_profile">',$row['name'],'　さん','<br>';
+    if($row['status_id'] == 0){
+        echo    '<div class="box1">
+                <div class="status1">STUDENT</div>
+                </div></div>';
+    }else if($row['status_id'] == 1){
+        echo    '<div class="box2">
+                <div class="status2">TEACHER</div>
+                </div></div>';
+    }else{
+        echo    '<div class="box3">
+                <div class="status3">GRADUATE</div>
+                </div></div>';
+    }
+    
     echo '</div>';
     ?>
 </div>

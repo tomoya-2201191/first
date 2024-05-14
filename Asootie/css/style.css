@@ -169,3 +169,45 @@
  .q_user {
      display: flex;
  }
+ .q_profile{
+    font-size: 24px;
+    margin-top: 10px;
+ }
+
+ .box1 {
+    width: 136px;
+    height: 32px;
+    flex-shrink: 0;
+    background: #FF0707;
+  }
+  .box2{
+    width: 136px;
+    height: 32px;
+    flex-shrink: 0;
+    background:#E5D1FF;
+  }
+  .box3{
+    width: 136px;
+    height: 32px;
+    flex-shrink: 0;
+    background: #B3FE54;
+  }
+
+  .status1 {
+    position: absolute;
+    transform: translate(20%, 15%);
+    font-size: 20px;
+    color: #000;
+}
+.status2 {
+    position: absolute;
+    transform: translate(20%, 15%);
+    font-size: 20px;
+    color: #000;
+}
+.status3 {
+    position: absolute;
+    transform: translate(12.5%, 15%);
+    font-size: 20px;
+    color: #000;
+}
