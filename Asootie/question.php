@@ -15,7 +15,8 @@ require 'header.php';
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     echo '<div class="q_user">';
     echo '<img src="img/icon.png" height="80" weight="100" class="icon">';
-    echo "<p>",$row['name'],"　さん","</p>";
+    echo "<p>",$row['name'],"　さん","<br>";
+    echo "STUDENT","</p>";
     echo '</div>';
     ?>
 </div>
@@ -29,7 +30,7 @@ require 'header.php';
     echo '<ul>';
     foreach ($sql as $row) {
         $id=$row['category_id'];
-        echo '<li><a href="#?id=', $id, '">',$row['category_name'],"</li>";
+        echo '<li><a href="?id=', $id, '">',$row['category_name'],"</li>";
         echo '<br>';
     }
     echo "</ul>";

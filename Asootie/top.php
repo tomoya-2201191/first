@@ -37,7 +37,7 @@ require 'header.php';
     echo "</ul>";
     echo '<hr>';
     ?>
-</div>
+    </div>
 
     </div>
 
