@@ -8,7 +8,7 @@ require 'header.php';
 
 <div class="flex">
 
-<div class="aaa">
+<div class="left">
     <?php
     $pdo= new PDO($connect,USER,PASS);
     $sql=$pdo->query('select * from user');
@@ -41,10 +41,11 @@ require 'header.php';
     $sql=$pdo->query('select * from question where q_id = 1');
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     echo '<div class="q_text">',$row['q_text'],'</div>'; // <div> を </div> に修正
-    echo    '<div class="btn1">
-            <div class="kyokan">共感した</div>
-            </div>';
+    echo    '<button class="btn1">共感した</button>';
     ?>
+    <br><hr>
+    <button class="check_answer" onclick="location.href='#'">回答を見る＞</button>
+    <button class="q_answer" onclick="location.href='#'">回答をする＞</button>
 </div>
 
 <div class="right">
