@@ -4,7 +4,9 @@ require 'db-connect.php';
 require 'header.php';
 
 ?>
-<div class="a1"></div>
+<div class="contents">
+    <p>Q&A一覧</p>
+</div>
 
 <div class="flex">
 
@@ -20,7 +22,7 @@ require 'header.php';
                     <h3>解決済み</h3>
                 </a>
             </div>
-            <div class="left-1-3">
+            <div class="left-1-2">
                 <a href="">
                     <h3>すべて</h3>
                 </a>

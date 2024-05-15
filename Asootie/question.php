@@ -8,7 +8,7 @@ require 'header.php';
 
 <div class="flex">
 
-<div class="left">
+<div class="aaa">
     <?php
     $pdo= new PDO($connect,USER,PASS);
     $sql=$pdo->query('select * from user');
@@ -56,7 +56,7 @@ require 'header.php';
     echo '<ul>';
     foreach ($sql as $row) {
         $id=$row['category_id'];
-        echo '<li><a href="?id=', $id, '">',$row['category_name'],"</li>";
+        echo '<li><a href="#?id=', $id, '">',$row['category_name'],"</li>";
         echo '<br>';
     }
     echo "</ul>";

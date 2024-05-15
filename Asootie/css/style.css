@@ -131,7 +131,7 @@
  } */
 
 
- .a1 {
+ .contents {
      background-color: #ffffff;
      margin-top: 20px;
      margin-left: auto;
@@ -139,8 +139,13 @@
      width: 1200px;
      height: 85px;
      flex-shrink: 0;
+     display: flex; /* Flexboxを有効にする */
+     align-items: center; /* 垂直方向の中央揃え */
+ }
 
-
+ .contents p{
+    margin-left: 50px;
+     font-size: 30px;
  }
 
  .left {
@@ -151,10 +156,48 @@
      margin-left: auto;
  }
 
-.left-1{
-    background-color: #999;
+ .left-1{
+    display: flex;
+    border: #333333 1px solid;
+    background-color: #E7E6E6;
+ }
+
+.left-1-1 {
+    width: calc(100% / 3);
+    text-align: center;
+}
+.left-1-1 a{
+    text-decoration: none;
+    color: #333333;
+}
+.left-1-1 a:hover{
+    color: #ff0000;
 }
 
+.left-1-2 {
+    width: calc(100% / 3);
+    text-align: center;
+    display: inline-block;
+    vertical-align: top; 
+    position: relative;
+}
+.left-1-2 a{
+    text-decoration: none;
+    color: #333333;
+
+}
+.left-1-2 a:hover{
+    color: #ff0000;
+}
+.left-1-2::before {
+    content: '';
+    position: absolute;
+    top: 10px; /* 上からの距離を指定してボーダーの上部の空白を設定 */
+    left: -1px; /* 左の位置を設定 */
+    width: 1px; /* ボーダーの幅を設定 */
+    height: calc(100% - 20px); /* ボーダーの高さを設定。上と下に10pxずつ空白を設ける */
+    background-color: #333; /* ボーダーの色を設定 */
+}
 
 
  .right {
