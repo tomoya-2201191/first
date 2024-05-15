@@ -211,3 +211,25 @@
     font-size: 20px;
     color: #000;
 }
+.date{
+    position: absolute;
+    transform: translate(280%, 250%); 
+}
+.answer_sum{
+    position: absolute;
+    transform: translate(500%,100%);
+    font-size: 30px;
+}
+.q_text{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 30px;
+}
+.btn1{
+    width: 143px;
+    height: 45.599px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    border: 1px solid #000;
+    background: #FFF;
+}
