@@ -150,7 +150,7 @@
 
  .left {
      background-color: #ffffff;
-     height: 400px;
+     height: auto;
      width: 700px;
      margin-top: 50px;
      margin-left: auto;
@@ -197,6 +197,22 @@
     width: 1px; /* ボーダーの幅を設定 */
     height: calc(100% - 20px); /* ボーダーの高さを設定。上と下に10pxずつ空白を設ける */
     background-color: #333; /* ボーダーの色を設定 */
+}
+
+.top-question{
+    margin-right: 30px;
+}
+.top-category{
+    position: relative;
+    bottom: 5px;
+    font-size: 12px;
+    color: #7a7979;
+}
+
+.top-answer-date{
+    margin-top: 2px;
+    font-size: 14px;
+    color: #7a7979;
 }
 
 
