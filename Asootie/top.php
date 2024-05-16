@@ -4,7 +4,9 @@ require 'db-connect.php';
 require 'header.php';
 
 ?>
-<div class="a1"></div>
+<div class="contents">
+    <p>Q&A一覧</p>
+</div>
 
 <div class="flex">
 
@@ -20,12 +22,51 @@ require 'header.php';
                     <h3>解決済み</h3>
                 </a>
             </div>
-            <div class="left-1-3">
+            <div class="left-1-2">
                 <a href="">
                     <h3>すべて</h3>
                 </a>
             </div>
         </div>
+
+
+        <?php
+
+
+
+        echo '<div class="top-question">';
+        $sql = $pdo->query('select * from question,category');
+        echo '<ul>';
+        foreach ($sql as $row) {
+            $category = $row['category_name'];
+            $id = $row['category_id'];
+            $text = $row['q_text'];
+            $answer = $row['answer_sum'];
+            $date = $row['q_date'];
+
+
+            // 文字数を制限して語尾に[...]を追加
+            if (mb_strlen($text) > 38) {
+                $text = mb_substr($text, 0, 38) . '...';
+            }
+            echo '<div class="top-category">', $category, '</div>';
+            echo '<a href="?id=', $id, '">', $text, '</a>';
+
+            echo '<div class="flex">';
+
+            echo '<div class="top-answer-date">';
+            echo  '💬', $answer, "　";
+            echo  $date;
+            echo '</div>';
+            echo '</div>';
+
+            echo "<hr>";
+            echo '<br>';
+        }
+        echo "</ul>";
+        echo "</div>";
+        ?>
+
     </div>
 
     <div class="right">
