@@ -39,6 +39,6 @@
 
     
     <div class="question">
-        <a class="questionn" href="question.php">aaaaaaaaaa</a>
+        <a class="questionn" href="question.php">質問・相談はこちら</a>
     </div>
     
