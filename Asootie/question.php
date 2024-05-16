@@ -4,7 +4,7 @@ require 'db-connect.php';
 require 'header.php';
 
 ?>
-<div class="a1"></div>
+<div class="contents"></div>
 
 <div class="flex">
 
@@ -40,12 +40,12 @@ require 'header.php';
     <?php
     $sql=$pdo->query('select * from question where q_id = 1');
     $row = $sql->fetch(PDO::FETCH_ASSOC);
-    echo '<div class="q_text">',$row['q_text'],'</div>'; // <div> を </div> に修正
-    echo    '<button class="btn1">共感した</button>';
+    $id = $row['q_id'];
+    echo '<div class="q_text">',$row['q_text'],'</div>';
+    echo    '<button class="btn1">共感した</button><br><hr>';
+    echo '<button class="check_answer"><a href="view-answer.php?q_id=' . $id . '">回答を見る＞</a></button>';
+    echo '<button class="q_answer"><a href="ranking.php?q_id=' . $id . '">回答をする＞</a></button>';
     ?>
-    <br><hr>
-    <button class="check_answer" onclick="location.href='#'">回答を見る＞</button>
-    <button class="q_answer" onclick="location.href='#'">回答をする＞</button>
 </div>
 
 <div class="right">
