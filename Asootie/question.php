@@ -8,33 +8,15 @@ require 'header.php';
 
 <div class="flex">
 
-<div class="left">
+<div class="aaa">
     <?php
     $pdo= new PDO($connect,USER,PASS);
     $sql=$pdo->query('select * from user');
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     echo '<div class="q_user">';
-    echo '<img src="img/icon.png" height="80" width="100">';
-    echo '<div class="q_profile">',$row['name'],'　さん','<br>';
-    if($row['status_id'] == 0){
-        echo    '<div class="box1">
-                <div class="status1">STUDENT</div>
-                </div>'; // コメントの修正: 閉じタグを追加
-    }else if($row['status_id'] == 1){
-        echo    '<div class="box2">
-                <div class="status2">TEACHER</div>
-                </div>'; // コメントの修正: 閉じタグを追加
-    }else{
-        echo    '<div class="box3">
-                <div class="status3">GRADUATE</div>
-                </div>'; // コメントの修正: 閉じタグを追加
-    }
-    echo '</div>'; // q_profile の終了タグを追加
-    $sql=$pdo->query('select * from question');
-    $row = $sql->fetch(PDO::FETCH_ASSOC);
-    echo '<div class="date">',$row['q_date'],'</div>';
-    echo '<div class="answer_sum">',$row['answer_sum'],'　回答','</div>';
-    echo '</div>'; // q_user の終了タグを修正
+    echo '<img src="img/icon.png" height="80" weight="100" class="icon">';
+    echo "<p>",$row['name'],"　さん","</p>";
+    echo '</div>';
     ?>
 
     <?php
