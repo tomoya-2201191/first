@@ -8,16 +8,44 @@ require 'header.php';
 
 <div class="flex">
 
-<div class="aaa">
+<div class="left">
     <?php
     $pdo= new PDO($connect,USER,PASS);
     $sql=$pdo->query('select * from user');
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     echo '<div class="q_user">';
-    echo '<img src="img/icon.png" height="80" weight="100" class="icon">';
-    echo "<p>",$row['name'],"　さん","</p>";
-    echo '</div>';
+    echo '<img src="img/icon.png" height="80" width="100">';
+    echo '<div class="q_profile">',$row['name'],'　さん','<br>';
+    if($row['status_id'] == 0){
+        echo    '<div class="box1">
+                <div class="status1">STUDENT</div>
+                </div>'; // コメントの修正: 閉じタグを追加
+    }else if($row['status_id'] == 1){
+        echo    '<div class="box2">
+                <div class="status2">TEACHER</div>
+                </div>'; // コメントの修正: 閉じタグを追加
+    }else{
+        echo    '<div class="box3">
+                <div class="status3">GRADUATE</div>
+                </div>'; // コメントの修正: 閉じタグを追加
+    }
+    echo '</div>'; // q_profile の終了タグを追加
+    $sql=$pdo->query('select * from question');
+    $row = $sql->fetch(PDO::FETCH_ASSOC);
+    echo '<div class="date">',$row['q_date'],'</div>';
+    echo '<div class="answer_sum">',$row['answer_sum'],'　回答','</div>';
+    echo '</div>'; // q_user の終了タグを修正
     ?>
+
+    <?php
+    $sql=$pdo->query('select * from question where q_id = 1');
+    $row = $sql->fetch(PDO::FETCH_ASSOC);
+    echo '<div class="q_text">',$row['q_text'],'</div>'; // <div> を </div> に修正
+    echo    '<button class="btn1">共感した</button>';
+    ?>
+    <br><hr>
+    <button class="check_answer" onclick="location.href='#'">回答を見る＞</button>
+    <button class="q_answer" onclick="location.href='#'">回答をする＞</button>
 </div>
 
 <div class="right">
