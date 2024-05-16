@@ -11,27 +11,36 @@
 <?php require 'db-connect.php'; ?>
 <?php require 'header.php'; ?>
 <?php
-    unset($_SESSION['Member']);
+    unset($_SESSION['user']);
         $pdo=new PDO($connect,USER,PASS);
-        $sql=$pdo->prepare('select * from Member where member_mei=? and member_pass=?');
-        $sql->execute([$_POST['member_mei'],$_POST['member_pass']]);
+        $sql=$pdo->prepare('select * from user where mail_address=? and pass=?');
+        $sql->execute([$_POST['mail_address'],$_POST['pass']]);
     foreach ($sql as $row){
-        $_SESSION['Member']=[
-                'member_number'=>$row['member_number'],'member_mei'=>$row['member_mei'],
-                'member_stay'=>$row['member_stay'],'member_fon'=>$row['member_fon'],
-                'member_pass'=>$row['member_pass']
+        $_SESSION['user']=[
+            'user_id'=>$row['user_id'],
+            'name'=>$row['name'],
+            'gender'=>$row['gender'],
+            'pass'=>$row['pass'],
+            'mail_address'=>$row['mail_address'],
+            'status_id'=>$row['status_id'],
+            'coin'=>$row['coin'],
+            'upload'=>$row['upload'],
+            'solution'=>$row['mail_address'],
+            'best_answer'=>$row['best_answer'],
+            'other'=>$row['other'],
+            'master'=>$_POST['master']
     ];
 }
-        if(isset($_SESSION['Member'])){
+        if(isset($_SESSION['user'])){
             // ログイン処理、成功の場合
-            echo 'いらっしゃいませ、',$_SESSION['Member']['member_mei'],'さん。';
-            echo '<form action = "product.php" method = "post">';
-            echo '<input type = "submit" value = "商品画面へ">';
+            echo '<h1>ログイン完了<h1>',;
+            echo '<form action = "top.php" method = "post">';
+            echo '<input type = "submit" value = "トップへ">';
             echo '</form>';
         }else{
             // ログイン処理、失敗の場合
             echo 'ユーザー名、パスワードが一致しません。';
-            echo '<form action = "login-input.php" method = "post">';
+            echo '<form action = "login.php" method = "post">';
             echo '<input type = "submit" value = "ログインへ">';
             echo '</form>';
 }
