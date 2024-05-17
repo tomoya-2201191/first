@@ -42,7 +42,7 @@ require 'header.php';
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     $id = $row['q_id'];
     echo '<div class="q_text">',$row['q_text'],'</div>';
-    echo    '<button class="btn1">共感した</button><br><hr>';
+    echo '<button class="btn1">共感した</button><br><hr>';
     echo '<button class="check_answer"><a href="view-answer.php?q_id=' . $id . '">回答を見る＞</a></button>';
     echo '<button class="q_answer"><a href="ranking.php?q_id=' . $id . '">回答をする＞</a></button>';
     ?>

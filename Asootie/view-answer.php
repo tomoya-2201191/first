@@ -26,7 +26,7 @@ require 'header.php';
         }
         echo '<div class="q_user">';
         echo '<img src="img/icon.png" height="80" width="100">';
-        echo '<div class="q_profile">', htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8'), ' さん<br>';
+        echo '<div class="q_profile">', $row['name'], ' さん<br>';
         if ($row['status_id'] == 0) {
             echo '<div class="box1">
                     <div class="status1">STUDENT</div>
@@ -41,14 +41,10 @@ require 'header.php';
                   </div>';
         }
         echo '</div>'; // q_profile の終了タグを追加
+        echo '<div class="date">', $row['a_date'], '</div><br>';
+        echo '<div class="a_text"><p>',$row['a_text'],'</p></div>';
         echo '</div>'; // q_user の終了タグを追加
-
-        $sql_question = $pdo->prepare('SELECT q_date FROM question WHERE q_id = ?');
-        $sql_question->execute([$_GET['q_id']]);
-        $question_row = $sql_question->fetch(PDO::FETCH_ASSOC);
-        if ($question_row) {
-            echo '<div class="date">', htmlspecialchars($question_row['q_date'], ENT_QUOTES, 'UTF-8'), '</div>';
-        }
+        echo '<hr>';
     }
     ?>
 </div>
