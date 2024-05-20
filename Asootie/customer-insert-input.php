@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php
-        echo '<h1>会員登録画面</h1>';
+        echo '<h1>新規登録画面</h1>';
         //ユーザー登録に遷移する
         echo '<form action = "customer-insert-input.php" method = "post">';
             echo '<table>';
