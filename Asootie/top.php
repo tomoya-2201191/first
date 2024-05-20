@@ -3,7 +3,36 @@ session_start();
 require 'db-connect.php';
 require 'header.php';
 
+// フィルターの設定
 $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
+
+// ページ設定
+$items_per_page = 1; // 1ページに表示するアイテム数
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // 現在のページ番号
+$offset = ($page - 1) * $items_per_page; // SQLクエリのオフセット
+
+// データベースクエリの設定
+if ($filter == 'open') {
+    $sql_count = 'SELECT COUNT(*) FROM question WHERE flag = 0';
+    $sql = $pdo->prepare('SELECT * FROM question JOIN category ON question.category_id = category.category_id WHERE flag = 0 LIMIT :limit OFFSET :offset');
+} elseif ($filter == 'closed') {
+    $sql_count = 'SELECT COUNT(*) FROM question WHERE flag = 1';
+    $sql = $pdo->prepare('SELECT * FROM question JOIN category ON question.category_id = category.category_id WHERE flag = 1 LIMIT :limit OFFSET :offset');
+} else {
+    $sql_count = 'SELECT COUNT(*) FROM question';
+    $sql = $pdo->prepare('SELECT * FROM question JOIN category ON question.category_id = category.category_id LIMIT :limit OFFSET :offset');
+}
+
+// 総アイテム数を取得
+$total_items = $pdo->query($sql_count)->fetchColumn();
+
+// 総ページ数を計算
+$total_pages = ceil($total_items / $items_per_page);
+
+// SQLクエリのプレースホルダーに値をバインド
+$sql->bindValue(':limit', $items_per_page, PDO::PARAM_INT);
+$sql->bindValue(':offset', $offset, PDO::PARAM_INT);
+$sql->execute();
 
 ?>
 <div class="contents">
@@ -32,15 +61,7 @@ $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
         </div>
 
         <?php
-
         echo '<div class="top-question">';
-        if ($filter == 'open') {
-            $sql = $pdo->query('SELECT * FROM question JOIN category ON question.category_id = category.category_id WHERE flag = 0');
-        } elseif ($filter == 'closed') {
-            $sql = $pdo->query('SELECT * FROM question JOIN category ON question.category_id = category.category_id WHERE flag = 1');
-        } else {
-            $sql = $pdo->query('SELECT * FROM question JOIN category ON question.category_id = category.category_id');
-        }
         echo '<ul>';
         foreach ($sql as $row) {
             $category = $row['category_name'];
@@ -69,6 +90,13 @@ $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
         }
         echo "</ul>";
         echo "</div>";
+
+        // ページャーの表示
+        echo '<div class="pager">';
+        for ($i = 1; $i <= $total_pages; $i++) {
+            echo '<a href="?filter=', $filter, '&page=', $i, '">', $i, '</a> ';
+        }
+        echo '</div>';
         ?>
 
     </div>
