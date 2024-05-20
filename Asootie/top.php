@@ -54,7 +54,7 @@ $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
                 $text = mb_substr($text, 0, 38) . '...';
             }
             echo '<div class="top-category">', $category, '</div>';
-            echo '<a href="?id=', $id, '">', $text, '</a>';
+            echo '<a href="question.php?id=', $row['q_id'], '">', $text, '</a>';
 
             echo '<div class="flex">';
 

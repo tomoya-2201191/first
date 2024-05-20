@@ -2,7 +2,12 @@
 session_start();;
 require 'db-connect.php';
 require 'header.php';
-
+if (isset($_POST['kyokan'])) {
+    $q_id = $_POST['q_id'];
+    $update_sql = 'UPDATE question SET feel = feel + 1 WHERE q_id = ?';
+    $stmt = $pdo->prepare($update_sql);
+    $stmt->execute([$q_id]);
+}
 ?>
 <div class="contents"></div>
 
@@ -30,19 +35,17 @@ require 'header.php';
                 </div>'; // コメントの修正: 閉じタグを追加
     }
     echo '</div>'; // q_profile の終了タグを追加
-    $sql=$pdo->query('select * from question');
+    $sql=$pdo->prepare('select * from question where q_id=?');
+    $sql->execute([$_GET['id']]);
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     echo '<div class="date">',$row['q_date'],'</div>';
     echo '<div class="answer_sum">',$row['answer_sum'],'　回答','</div>';
     echo '</div>'; // q_user の終了タグを修正
-    ?>
-
-    <?php
-    $sql=$pdo->query('select * from question where q_id = 1');
-    $row = $sql->fetch(PDO::FETCH_ASSOC);
-    $id = $row['q_id'];
+    $id = $_GET['id'];
     echo '<div class="q_text">',$row['q_text'],'</div>';
-    echo '<button class="btn1">共感した</button><br><hr>';
+    echo '<form method="post" action="question.php">';
+    echo '<input type="hidden" name="q_id" value='.$id.'>';
+    echo '<button type="submit" name="kyokan" class="btn1">共感した '.$row['feel'].'</button></form>';
     echo '<button class="check_answer"><a href="view-answer.php?q_id=' . $id . '">回答を見る＞</a></button>';
     echo '<button class="q_answer"><a href="ranking.php?q_id=' . $id . '">回答をする＞</a></button>';
     ?>

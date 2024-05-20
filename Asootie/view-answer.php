@@ -21,11 +21,8 @@ require 'header.php';
     ');
     $sql->execute([$_GET['q_id']]);
     foreach($sql as $row) {
-        if ($row['ba_flag'] == 1) {
-            echo '<div class="best-answer">BEST ANSWER</div>';
-        }
         echo '<div class="q_user">';
-        echo '<img src="img/icon.png" height="80" width="100">';
+        echo '<img src="img/icon.png" height="80" width="110">';
         echo '<div class="q_profile">', $row['name'], ' さん<br>';
         if ($row['status_id'] == 0) {
             echo '<div class="box1">
@@ -42,8 +39,11 @@ require 'header.php';
         }
         echo '</div>'; // q_profile の終了タグを追加
         echo '<div class="date">', $row['a_date'], '</div><br>';
-        echo '<div class="a_text"><p>',$row['a_text'],'</p></div>';
+        if ($row['ba_flag'] == 1) {
+            echo '<div class="best-img"><img src="img/bestanswer.png" height="120" width="150"></div>';
+        }
         echo '</div>'; // q_user の終了タグを追加
+        echo '<div class="a_text"><p>',$row['a_text'],'</p></div>';
         echo '<hr>';
     }
     ?>
