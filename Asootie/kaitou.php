@@ -27,6 +27,11 @@ foreach ($sql as $row) {
 echo "</ul>";
 echo '<hr>';
 ?>
+
+<?php
+header('カテゴリ一覧へ>')
+?>
+
 </div>
 
 </div>
