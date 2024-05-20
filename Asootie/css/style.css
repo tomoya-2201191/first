@@ -1,6 +1,6 @@
- /**{
+ /* *{
      outline: 2px red solid;
- } */
+ }  */
 
  .flex {
      display: flex;
@@ -349,4 +349,10 @@
     background-color: #333;
     color: #fff;
     border: 1px solid #333;
+}
+
+
+
+footer{
+    margin: 100px;
 }
