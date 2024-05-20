@@ -18,45 +18,51 @@
 <body>
     <h1>ASO知恵袋</h1>
     <!-- ログイン画面に遷移するフォームなど... -->
-    <form action="login-input.php" method="post">
+    <form action="login.php" method="post">
         <div class="form-group">
-            <label for="member_mei" class="loginname">メールアドレス</label>
-            <input type="text" id="member_mei" name="member_mei" required><br>
+            <label for="mail_address" class="loginname">メールアドレス</label>
+            <input type="text" id="mail_address" name="mail-address" required><br>
         </div>
         <div class="form-group">
-            <label for="member_pass" class="passname">パスワード</label>
-            <input type="password" id="member_pass" name="member_pass" required><br>
+            <label for="pass" class="passname">パスワード</label>
+            <input type="password" id="pass" name="pass" required><br>
         </div>
         <input type="submit" class="login" value="ログイン">
     </form>
     <form action="customer-insert-input.php" method="post">
-        <p class="hajimete">初めての方はこちらから</p>
-        <input type="submit" class="newmember" value="新規会員登録">
+        <input type="submit" class="newmember" value="新規登録">
     </form>
 
     <?php
-        if(!empty($_POST['member_mei'])){
+        if(!empty($_POST['mail_address'])){
             $pdo=new PDO($connect, USER, PASS);
-            $sql=$pdo->prepare('select * from Member where member_mei=?');
-            $sql->execute([$_POST['member_mei']]);
+            $sql=$pdo->prepare('select * from user where mail_address=?');
+            $sql->execute([$_POST['mail_address']]);
             if(empty($sql->fetchAll())){
-                echo '<p class = "erorr">ログイン名またはパスワードが違います。</p>';
+                echo '<p class = "erorr">メールアドレスまたはパスワードが違います。</p>';
             }else{
-                $sql=$pdo->prepare('select * from Member where member_mei=?');
-                $sql->execute([$_POST['member_mei']]);
+                $sql=$pdo->prepare('select * from user where mail_address=?');
+                $sql->execute([$_POST['mail_address']]);
                 foreach($sql as $row){
-                    if(password_verify($_POST['member_pass'],$row['member_pass']) == true){
-                        $_SESSION['Member']=[
-                            'member_number'=>$row['member_number'],
-                            'member_mei'=>$row['member_mei'],
-                            'member_stay'=>$row['member_stay'],
-                            'member_fon'=>$row['member_fon'],
-                            'member_pass'=>$_POST['member_pass']
+                    if(password_verify($_POST['pass'],$row['pass']) == true){
+                        $_SESSION['user']=[
+                            'user_id'=>$row['user_id'],
+                            'name'=>$row['name'],
+                            'gender'=>$row['gender'],
+                            'pass'=>$row['pass'],
+                            'mail_address'=>$row['mail_address'],
+                            'status_id'=>$row['status_id'],
+                            'coin'=>$row['coin'],
+                            'upload'=>$row['upload'],
+                            'solution'=>$row['mail_address'],
+                            'best_answer'=>$row['best_answer'],
+                            'other'=>$row['other'],
+                            'master'=>$_POST['master']
                         ];
                         
                         echo <<<EOF
                         <script>
-                            location.href='product.php';
+                            location.href='top.php';
                         </script>
                         EOF;
     

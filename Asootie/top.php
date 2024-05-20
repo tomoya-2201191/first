@@ -1,7 +1,9 @@
 <?php
-session_start();;
+session_start();
 require 'db-connect.php';
 require 'header.php';
+
+$filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
 
 ?>
 <div class="contents">
@@ -13,29 +15,32 @@ require 'header.php';
     <div class="left">
         <div class="left-1">
             <div class="left-1-1">
-                <a href="">
+                <a href="?filter=open">
                     <h3>回答受付中</h3>
                 </a>
             </div>
             <div class="left-1-2">
-                <a href="">
+                <a href="?filter=closed">
                     <h3>解決済み</h3>
                 </a>
             </div>
             <div class="left-1-2">
-                <a href="">
+                <a href="?filter=all">
                     <h3>すべて</h3>
                 </a>
             </div>
         </div>
 
-
         <?php
 
-
-
         echo '<div class="top-question">';
-        $sql = $pdo->query('select * from question,category');
+        if ($filter == 'open') {
+            $sql = $pdo->query('SELECT * FROM question JOIN category ON question.category_id = category.category_id WHERE flag = 0');
+        } elseif ($filter == 'closed') {
+            $sql = $pdo->query('SELECT * FROM question JOIN category ON question.category_id = category.category_id WHERE flag = 1');
+        } else {
+            $sql = $pdo->query('SELECT * FROM question JOIN category ON question.category_id = category.category_id');
+        }
         echo '<ul>';
         foreach ($sql as $row) {
             $category = $row['category_name'];
@@ -43,7 +48,6 @@ require 'header.php';
             $text = $row['q_text'];
             $answer = $row['answer_sum'];
             $date = $row['q_date'];
-
 
             // 文字数を制限して語尾に[...]を追加
             if (mb_strlen($text) > 38) {
@@ -74,7 +78,7 @@ require 'header.php';
         <?php
 
         echo '<div class="category">';
-        $sql = $pdo->query('select * from category');
+        $sql = $pdo->query('SELECT * FROM category');
         echo '<br>', '　カテゴリ一覧';
         echo '<hr>';
         echo '<ul>';
@@ -87,7 +91,6 @@ require 'header.php';
         echo '<hr>';
         ?>
     </div>
-
 
 </div>
 
