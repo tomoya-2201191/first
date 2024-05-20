@@ -70,13 +70,6 @@ $sql->execute();
             $answer = $row['answer_sum'];
             $date = $row['q_date'];
 
-        /*<form method="get" action="search.php" class="search">
-                <div class="searchForm">
-                    <input type="text" class="searchForm-input" placeholder="Q&Aを探す">
-                    <button type="submit" class="searchForm-submit"></button>
-                </div>
-        </form>*/
-        </div>
             // 文字数を制限して語尾に[...]を追加
             if (mb_strlen($text) > 38) {
                 $text = mb_substr($text, 0, 38) . '...';

@@ -27,6 +27,8 @@ foreach ($sql as $row) {
 echo "</ul>";
 echo '<hr>';
 ?>
+<a href="question.php">カテゴリ一覧へ</a>
+
 </div>
 
 </div>
