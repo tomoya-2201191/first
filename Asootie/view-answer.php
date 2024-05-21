@@ -20,7 +20,9 @@ require 'header.php';
         WHERE answer.q_id = ?
     ');
     $sql->execute([$_GET['q_id']]);
+    $id = NULL;
     foreach($sql as $row) {
+        $id = $row['q_id'];
         echo '<div class="q_user">';
         echo '<img src="img/icon.png" height="80" width="110">';
         echo '<div class="q_profile">', $row['name'], ' さん<br>';
@@ -46,6 +48,7 @@ require 'header.php';
         echo '<div class="a_text"><p>',$row['a_text'],'</p></div>';
         echo '<hr>';
     }
+    echo '<button class="back"><a href="question.php?id=' . $id . '">戻る＞</a></button>';
     ?>
 </div>
 
@@ -64,6 +67,7 @@ require 'header.php';
     }
     echo "</ul>";
     echo '<hr>';
+    
     ?>
 </div>
 
