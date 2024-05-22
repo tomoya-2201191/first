@@ -75,7 +75,7 @@ $sql->execute();
                 $text = mb_substr($text, 0, 38) . '...';
             }
             echo '<div class="top-category">', $category, '</div>';
-            echo '<a class="top-text" href="?id=', $id, '">', $text, '</a>';
+            echo '<a class="top-text" href="question.php?id=', $id, '">', $text, '</a>';
 
             echo '<div class="flex">';
 
