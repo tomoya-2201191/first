@@ -489,6 +489,9 @@ a{
    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
    margin-left: 30px;
 }
+.a_color{
+    color: black;
+}
 .back{
     margin-left: 275px;
     width: 172px;
@@ -497,6 +500,9 @@ a{
     border-radius: 40px;
     background: #B5E5FA;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.modoru-color{
+    color:#000;
 }
 .a_user{
     display:flex;

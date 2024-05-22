@@ -55,7 +55,7 @@ require 'header.php';
             echo '<hr>';
         }
     }
-    echo '<button class="back"><a href="question.php?id=' . $id . '">＜戻る</a></button>';
+    echo '<button class="back"><a class="modoru-color" href="question.php?id=' . $id . '">＜戻る</a></button>';
     ?>
 </div>
 
