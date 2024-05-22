@@ -11,7 +11,7 @@ if (isset($_POST['kyokan'])) {
     $stmt->execute([$q_id]);
 }
 ?>
-<div class="contents"></div>
+<div class="contents"><p>質問詳細</p></div>
 
 <div class="flex">
 
@@ -48,6 +48,7 @@ if (isset($_POST['kyokan'])) {
     echo '<form method="post" action="">';
     echo '<input type="hidden" name="q_id" value="', $id, '">';
     echo '<button type="submit" name="kyokan" class="btn1">共感した ', $row['feel'], '</button></form>';
+    echo '<hr><br>';
     echo '<button class="check_answer"><a href="view-answer.php?q_id=' . $id . '">回答を見る＞</a></button>';
     echo '<button class="q_answer"><a href="ranking.php?q_id=' . $id . '">回答をする＞</a></button>';
     ?>

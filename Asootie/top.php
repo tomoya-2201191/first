@@ -65,7 +65,7 @@ $sql->execute();
         echo '<ul>';
         foreach ($sql as $row) {
             $category = $row['category_name'];
-            $id = $row['category_id'];
+            $id = $row['q_id'];
             $text = $row['q_text'];
             $answer = $row['answer_sum'];
             $date = $row['q_date'];
