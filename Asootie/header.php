@@ -17,13 +17,15 @@
 
 
         <div class="logo">
-            <img src="img/asootie.png" alt="ロゴ">
+            <a href="top.php">
+                <img src="img/asootie.png" alt="ロゴ">
+            </a>
         </div>
 
         <div class="search_box">
 
             <form method="get" action="#" class="search">
-                  <div class="searchForm">
+                <div class="searchForm">
                     <input type="text" class="searchForm-input" placeholder="Q&Aを探す">
                     <button type="submit" class="searchForm-submit"></button>
                 </div>
@@ -37,8 +39,7 @@
 
     </header>
 
-    
+
     <div class="question">
         <a class="questionn" href="question.php">質問・相談はこちら</a>
     </div>
-    
