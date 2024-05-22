@@ -2,6 +2,7 @@
      outline: 2px red solid;
  }  */
 
+
  .flex {
      display: flex;
  }
@@ -318,17 +319,18 @@
    height: 58px;
    flex-shrink: 0;
    border-radius: 40px;
-   background: #fb4433;
+   background: #FAB5B5;
    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
    margin-left: 30px;
 }
 .back{
+    margin-left: 275px;
     width: 172px;
-   height: 58px;
-   flex-shrink: 0;
-   border-radius: 40px;
-   background: #B5E5FA;
-   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    height: 58px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: #B5E5FA;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .a_text{
     margin-left: 50px;
@@ -339,6 +341,9 @@
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
+}
+.no-answer{
+    text-align: center;
 }
 .best-img{
     margin-left:100px;
