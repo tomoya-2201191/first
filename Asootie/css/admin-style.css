@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    background-color: #E65555;
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+}
+
+.back-white {
+    width: 600px;
+    height: 500px;
+    background: #FFF;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.admin-img{
+    margin-left: 225px;
+    margin-right: 225px;
+}
+.textbox{
+    border: none;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+.under{
+    width: 400px;
+    height: 1px;
+    background: #000;
+    margin-left: 100px;
+}
+.login-btn{
+    width: 150px;
+    height: 50px;
+    background: #8591fc;
+    margin-top: 50px;
+    margin-left: 225px;
+}
+.complete{
+    font-size: x-large;
+    text-align: center;
+    margin-top: 50px;
+
+}
+.under2{
+    width: 100px;
+    height: 1px;
+    background: #000;
+    margin-left: 100px;
+}

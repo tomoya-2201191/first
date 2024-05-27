@@ -14,7 +14,6 @@ a{
      background-attachment: fixed;
      /* 背景画像を固定してスクロールさせない */
  }
-
  .header-top {
      height: 30px;
      background-color: #94c8ff;
