@@ -8,8 +8,9 @@
     <title>会員登録</title>
 </head>
 <body>
-<h1>新規登録フォーム</h1>
+
     <form action="customer-insert-output.php" method="post">
+    <img id="logo" src="img/asootie.png" alt="ASOO！知恵袋のロゴ">
         <label for="name">名前:</label><br>
         <input type="text" id="name" name="name" required><br><br>
         <label for="gender">性別:</label><br>

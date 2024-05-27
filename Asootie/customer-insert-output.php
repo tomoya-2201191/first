@@ -26,9 +26,8 @@ try {
         $stmt->bindParam(':email', $email);
         $stmt->execute();
 
-        echo "登録が完了しました。";
-        // ログインページにリダイレクト
-        header("Location: index.php");
+        // 登録完了画面にリダイレクト
+        header("Location: registration-complete.php");
         exit();
     }
 } catch (PDOException $e) {

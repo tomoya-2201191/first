@@ -14,9 +14,7 @@ session_start();
 </head>
 <body>
     <?php if (isset($_SESSION['user_id'])): ?>
-        <h1>ようこそ、<?php echo htmlspecialchars($_SESSION['name']); ?>さん</h1>
-    <?php else: ?>
-        <h1>ログインフォーム</h1>
+        
         <form action="login-output.php" method="post">
             <label for="email">E-mail Address:</label><br>
             <input type="email" id="email" name="email" required><br><br>
