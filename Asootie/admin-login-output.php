@@ -21,7 +21,7 @@ require 'db-connect.php';
             <img src="img/king-logo.png" width="150" height="150">
         </div>
         <p class="complete">ログイン完了</p>
-        <form action="#" method="post">
+        <form action="admin-top.php" method="post">
             <button type="submit" class="login-btn">トップへ</button>
         </form>
     </div>
