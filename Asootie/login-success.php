@@ -31,6 +31,6 @@ if (!isset($_SESSION['user_id'])) {
 <body>
     <h1>ログイン完了</h1>
     <p><?php echo htmlspecialchars($_SESSION['name']); ?>さん、ログインが成功しました。</p>
-    <a href="index.php" class="button">トップへ</a>
+    <a href="top.php" class="button">トップへ</a>
 </body>
 </html>
