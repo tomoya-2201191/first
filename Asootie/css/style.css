@@ -14,10 +14,10 @@ a{
      background-attachment: fixed;
      /* 背景画像を固定してスクロールさせない */
  }
- .header-top {
+ /*.header-top {
      height: 30px;
-     background-color: #94c8ff;
- }
+     background-color: #cae3ff;
+ }*/
 
  header {
      display: flex;
@@ -47,18 +47,18 @@ a{
  }
 
 
- .search_box {
-     /* margin-left: auto; */
+ /*.search_box {
+      margin-left: auto; 
      width: 100%;
 
 
- }
+ }*/
 
 
- input {
+/* input {
      /* -webkit-appearance: none; */
      /* -moz-appearance: none; */
-     /* appearance: none; */
+     /* appearance: none; 
      padding: 10px;
      margin: 5px 0;
      border: 1px solid #999;
@@ -115,7 +115,7 @@ a{
 
      background-color: #e2e2e2c0;
 
- }
+ }*/
 
 
 
