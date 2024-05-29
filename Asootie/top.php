@@ -35,6 +35,8 @@ $sql->bindValue(':offset', $offset, PDO::PARAM_INT);
 $sql->execute();
 
 ?>
+
+
 <div class="contents">
     <p>Q&A一覧</p>
 </div>
@@ -65,7 +67,7 @@ $sql->execute();
         echo '<ul>';
         foreach ($sql as $row) {
             $category = $row['category_name'];
-            $id = $row['q_id'];
+            $id = $row['category_id'];
             $text = $row['q_text'];
             $answer = $row['answer_sum'];
             $date = $row['q_date'];
@@ -75,7 +77,7 @@ $sql->execute();
                 $text = mb_substr($text, 0, 38) . '...';
             }
             echo '<div class="top-category">', $category, '</div>';
-            echo '<a class="top-text" href="question.php?id=', $id, '">', $text, '</a>';
+            echo '<a class="top-text" href="?id=', $id, '">', $text, '</a>';
 
             echo '<div class="flex">';
 
@@ -112,7 +114,7 @@ $sql->execute();
         echo '<ul>';
         foreach ($sql as $row) {
             $id = $row['category_id'];
-            echo '<li><a class="category-black" href="?id=', $id, '">', $row['category_name'], "</a></li>";
+            echo '<li><a href="?id=', $id, '">', $row['category_name'], "</a></li>";
             echo '<br>';
         }
         echo "</ul>";
@@ -122,7 +124,7 @@ $sql->execute();
     </div>
 </div>
 </div>
-
-<?php
+ <?php
 require 'footer.php';
-?>
+?> 
+

@@ -1,48 +1,50 @@
-<?php session_start(); ?>
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/login-output.css">
+        <title>Document</title>
+    </head>
+    <body>
+    <?php session_start(); ?>
+<?php require 'db-connect.php'; ?>
+<?php require 'header.php'; ?>
 <?php
-// データベース接続情報
-$servername = "mysql302.phy.lolipop.lan";
-$username = "LAA1516825";
-$password = "aso1234";
-$dbname = "LAA1516825-aso";
-
-try {
-    // データベースに接続
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        // 入力されたメールアドレスがデータベースに存在するか確認
-        $sql = "SELECT * FROM user WHERE mail_address = :email";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user) {
-            if (password_verify($password, $user['pass'])) {
-                // ログイン成功
-                $_SESSION['user_id'] = $user['user_id'];
-                $_SESSION['name'] = $user['name'];
-                header("Location: login-success.php");
-                exit();
-            } else {
-                // パスワードが一致しない
-                $_SESSION['login_error'] = "メールアドレスまたはパスワードが間違っています";
-                header("Location: login-input.php");
-                exit();
-            }
-        } else {
-            // ユーザーが存在しない
-            $_SESSION['login_error'] = "メールアドレスまたはパスワードが間違っています";
-            header("Location: login-input.php");
-            exit();
-        }
-    }
-} catch (PDOException $e) {
-    echo "データベース接続に失敗しました: " . $e->getMessage();
+    unset($_SESSION['user']);
+        $pdo=new PDO($connect,USER,PASS);
+        $sql=$pdo->prepare('select * from user where mail_address=? and pass=?');
+        $sql->execute([$_POST['mail_address'],$_POST['pass']]);
+    foreach ($sql as $row){
+        $_SESSION['user']=[
+            'user_id' => $user['user_id'],
+            'name' => $user['name'],
+            'gender' => $user['gender'],
+            'pass' => $user['pass'],
+            'mail_address' => $user['mail_address'],
+            'status_id' => $user['status_id'],
+            'coin' => $user['coin'],
+            'upload' => $user['upload'],
+            'solution' => $user['solution'],
+            'best_answer' => $user['best_answer'],
+            'other' => $user['other'],
+            'master' => $user['master']
+    ];
+}
+        if(isset($_SESSION['user'])){
+            // ログイン処理、成功の場合
+            echo 'ログイン完了';
+            echo '<form action = "top.php" method = "post">';
+            echo '<input type = "submit" value = "トップへ">';
+            echo '</form>';
+        }else{
+            // ログイン処理、失敗の場合
+            echo 'ユーザー名、パスワードが一致しません。';
+            echo '<form action = "login-input.php" method = "post">';
+            echo '<input type = "submit" value = "ログインへ">';
+            echo '</form>';
 }
 ?>
+    <?php require 'footer.php'; ?>
+    </body>
+    </html>
