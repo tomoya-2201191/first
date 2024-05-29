@@ -10,7 +10,7 @@ a{
  }
 
  body {
-     background-image: url(../img/background.png);
+     background-image:url(img/2.png);
      background-attachment: fixed;
      /* 背景画像を固定してスクロールさせない */
  }
@@ -25,7 +25,7 @@ a{
      /* justify-content: center; */
      align-items: center;
      padding: 5px;
-     background-color: #ffffff;
+     background-color: #643e3e;
      height: 150px;
  }
 
