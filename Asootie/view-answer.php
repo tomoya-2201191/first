@@ -4,7 +4,7 @@ require 'db-connect.php';
 require 'header.php';
 
 ?>
-<div class="contents"><p>回答一覧</p></div>
+<div class="a1"></div>
 
 <div class="flex">
 
@@ -26,7 +26,7 @@ require 'header.php';
         echo '<div class="no-answer"><h3>回答はありません</h3></div>';
     } else {
         foreach ($results as $row) {
-            echo '<div class="a_user">';
+            echo '<div class="q_user">';
             echo '<img src="img/icon.png" height="80" width="110">';
             echo '<div class="q_profile">', $row['name'], ' さん<br>';
             if ($row['status_id'] == 0) {
@@ -44,18 +44,15 @@ require 'header.php';
             }
             echo '</div>'; // q_profile の終了タグを追加
             echo '<div class="date">', $row['a_date'], '</div><br>';
-            echo '</div>'; // q_user の終了タグを追加
             if ($row['ba_flag'] == 1) {
-                echo '<div class="best-img"><img src="img/bestanswer.png" height="140" width="170">';
-                echo '<div class="best_text"><p>', $row['a_text'], '</p></div></div>';
-            }else{
-                echo '<div class="a_text"><p>', $row['a_text'], '</p></div>';
+                echo '<div class="best-img"><img src="img/bestanswer.png" height="120" width="150"></div>';
             }
-            
+            echo '</div>'; // q_user の終了タグを追加
+            echo '<div class="a_text"><p>', $row['a_text'], '</p></div>';
             echo '<hr>';
         }
     }
-    echo '<button class="back"><a class="modoru-color" href="question.php?id=' . $id . '">＜戻る</a></button>';
+    echo '<button class="back"><a href="question.php?id=' . $id . '">戻る＞</a></button>';
     ?>
 </div>
 
@@ -69,7 +66,7 @@ require 'header.php';
     echo '<ul>';
     foreach ($sql as $row) {
         $id=$row['category_id'];
-        echo '<li><a class="category-black" href="?id=', $id, '">', $row['category_name'], "</a></li>";
+        echo '<li><a href="#?id=', $id, '">',$row['category_name'],"</li>";
         echo '<br>';
     }
     echo "</ul>";
