@@ -35,6 +35,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <title>質問投稿 - AsoO! 知恵袋</title>
+    <link rel="stylesheet" href="css/situmonnkaitou.css">
     <style>
         body {
             font-family: Arial, sans-serif;
