@@ -15,4 +15,4 @@
 <!--ログアウト完了画面に遷移する-->
 <form action = "logout-output.php" methods = "post">
     <h1>ログアウトしますか？</h1>
-    <input type = "submit" class="out" value = "ログアウト"
+    <input type = "submit" class="out" value = "ログアウト">
