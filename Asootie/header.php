@@ -13,33 +13,16 @@
 <body>
     <div class="header-top"></div>
 
-
-
-    <div class="area">
-        <ul class="circles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
-
-
-
     <header>
+
 
         <div class="logo">
             <a href="top.php">
                 <img src="img/asootie.png" alt="ロゴ">
             </a>
         </div>
-        <!-- <div class="search_box">
+
+        <div class="search_box">
 
             <form method="get" action="#" class="search">
                 <div class="searchForm">
@@ -47,29 +30,14 @@
                     <button type="submit" class="searchForm-submit"></button>
                 </div>
             </form>
-        </div> -->
-
-
-        <form action="#" class="search-form-1">
-            <label>
-                <input type="text" placeholder="キーワードを入力">
-            </label>
-            <button type="submit" aria-label="検索"></button>
-        </form>
-
-
+        </div>
 
         <div class="icon">
-            <a href="#">
-                <img src="img/icon.png">
-            </a>
+            <img src="img/icon.png">
         </div>
 
 
     </header>
-
-
-
 
 
     <div class="question">
