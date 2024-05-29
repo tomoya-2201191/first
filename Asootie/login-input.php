@@ -1,57 +1,35 @@
-<?php session_start(); ?>
-<?php require 'db-connect.php'; ?>
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/login-input.css">
-    <title>ログイン</title>
+    <title>ログインフォーム</title>
+    <style>
+        .error { color: red; }
+    </style>
 </head>
 <body>
-    <h1>ASOスポーツ用品サイト</h1>
-
-    <!-- ログインフォーム -->
-    <form action="login-input.php" method="post">
-        <div class="form-group">
-            <label for="mail_address" class="loginname">メールアドレス</label>
-            <input type="text" id="mail_address" name="mail_address" required><br>
-        </div>
-        <div class="form-group">
-            <label for="pass" class="passname">パスワード</label>
-            <input type="password" id="pass" name="pass" required><br>
-        </div>
-        <input type="submit" class="login" value="ログイン">
-    </form>
-
-    <!-- 新規会員登録フォーム -->
-    <form action="customer-insert-input.php" method="post">
-        <p class="hajimete">初めての方はこちらから</p>
-        <input type="submit" class="newmember" value="新規会員登録">
-    </form>
-
-    <?php
-        if(!empty($_POST['mail_address'])){
-            $pdo=new PDO($connect, USER, PASS);
-            $sql=$pdo->prepare('select * from user where mail_address=?');
-            $sql->execute([$_POST['mail_address']]);
-            $user = $sql->fetch(); // ユーザー情報を取得
-
-            if(empty($user)){
-                echo '<p class="error">メールアドレスまたはパスワードが違います。</p>';
-            } else {
-                if(password_verify($_POST['pass'], $user['pass'])) {
-                    $_SESSION['user'] = $user; // ユーザー情報をセッションに保存
-                    echo '<script>location.href="top.php";</script>';
-                    exit;
-                } else {
-                    echo '<p class="error">メールアドレスまたはパスワードが違います。</p>';
-                }
+    <?php if (isset($_SESSION['user_id'])): ?>
+        
+        <form action="login-output.php" method="post">
+            <label for="email">E-mail Address:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br><br>
+            <?php
+            if (isset($_SESSION['login_error'])) {
+                echo '<p class="error">' . htmlspecialchars($_SESSION['login_error']) . '</p>';
+                unset($_SESSION['login_error']); // エラーメッセージを消去
             }
-        }
-    ?>
-
-<?php require 'footer.php'; ?>
+            ?>
+            <input type="submit" value="ログイン">
+        </form>
+        <br>
+        <a href="customer-insert-input.php">新規登録</a>
+    <?php endif; ?>
 </body>
 </html>

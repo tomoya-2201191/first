@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    background-color: #E65555;
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+}
+
+.back-white {
+    width: 600px;
+    height: 500px;
+    background: #FFF;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.back-white2 {
+    width: 1000px;
+    height: 500px;
+    background: #FFF;
+    margin: 0 auto; /* 中央寄せ */
+    overflow: auto; /* 要素内でスクロール可能にする */
+    box-sizing: border-box; /* パディングを含めたボックスサイズにする */
+    padding: 20px; /* コンテンツ周りにパディングを追加 */
+    margin-bottom: 40px;
+}
+.admin-img{
+    margin-left: 225px;
+    margin-right: 225px;
+}
+.textbox{
+    border: none;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+.under{
+    width: 400px;
+    height: 1px;
+    background: #000;
+    margin-left: 100px;
+}
+.login-btn{
+    width: 150px;
+    height: 50px;
+    background: #8591fc;
+    margin-top: 50px;
+    margin-left: 225px;
+}
+.complete{
+    font-size: x-large;
+    text-align: center;
+    margin-top: 50px;
+
+}
+.under2{
+    width: 100px;
+    height: 1px;
+    background: #000;
+    margin-left: 100px;
+}
+.header-top {
+    height: 30px;
+    background-color: #E65555;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between; /* 要素を左右に配置します */
+    align-items: center;
+    padding: 5px;
+    background-color: #ffffff;
+    height: 100px;
+    width: 100%; /* ヘッダーが全幅を取るようにします */
+    box-sizing: border-box; /* パディングを要素の全幅と高さに含めます */
+    margin: 0; /* デフォルトの余白を取り除きます */
+    margin-bottom: 40px;
+}
+.logo {
+    margin-left: 50px;
+}
+.q_user {
+    display: flex;
+    align-items: center; /* 子要素を上下中央に配置 */
+}
+
+.q_profile {
+    font-size: 24px;
+    margin-top: 10px;
+    width: 400px; /* 固定幅を設定 */
+    margin-right: 20px; /* 右側にスペースを追加 */
+}
+
+.box1 {
+    width: 136px;
+    height: 32px;
+    flex-shrink: 0;
+    background: lightcoral;
+}
+
+.box2 {
+    width: 136px;
+    height: 32px;
+    flex-shrink: 0;
+    background: #E5D1FF;
+}
+
+.box3 {
+    width: 136px;
+    height: 32px;
+    flex-shrink: 0;
+    background: lightgreen;
+}
+
+.status1 {
+    transform: translate(15%, 20%);
+    font-size: 20px;
+    color: #000;
+}
+
+.status2 {
+    transform: translate(15%, 20%);
+    font-size: 20px;
+    color: #000;
+}
+
+.status3 {
+    transform: translate(10%, 20%);
+    font-size: 20px;
+    color: #000;
+}
+.a_color{
+    color: black;
+}
+.delete-user {
+    background-color: #E65555; /* ボタンの背景色 */
+    color: #fff; /* テキストの色 */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 40px;
+    height:40px;
+    margin-left: 100px;
+}
+
+.delete-user a {
+    color: #fff; /* リンクの色 */
+    text-decoration: none;
+}

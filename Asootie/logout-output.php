@@ -11,7 +11,7 @@
         <?php require 'header.php'; ?>
             <?php
                 //ログアウト処理の実行
-                unset($_SESSION['Member']);
+                unset($_SESSION['user']);
                 echo '<h1> ログアウトしました。</h1>';
                 echo '<p> またのご利用お待ちしております。</p>';
                 //ログイン画面に遷移する
