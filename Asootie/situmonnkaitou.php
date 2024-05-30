@@ -25,6 +25,10 @@ require 'header.php';
 
 $conn->close();*/
 ?>
+
+<div class="contents">
+    <p>質問投稿</p>
+</div>
 <div class="flex">
     <div class="left">
         <h1>質問投稿</h1>
