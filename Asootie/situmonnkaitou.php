@@ -40,6 +40,7 @@ $conn->close();*/
             echo '<div class="q_user">';
             echo '<img src="img/icon.png" height="80" width="100">';
             echo '<div class="q_profile">', $row['name'], '　さん', '<br>';  
+            echo '</div></div>'
            ?>              
             </div>
             <div class="form-group">
