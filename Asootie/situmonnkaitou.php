@@ -25,7 +25,7 @@ require 'header.php';
 
 $conn->close();*/
 ?>
-
+<div class="flex">
     <div class="left">
         <h1>質問投稿</h1>
         <form method="post" action="">
@@ -58,6 +58,6 @@ $conn->close();*/
             </div>
     </div>
         </form>
-    
+</div>
 </body>
 </html>
