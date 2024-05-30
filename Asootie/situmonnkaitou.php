@@ -6,13 +6,9 @@ require 'header.php';
 // データベース接続
 //$conn = new mysqli($servername, $username, $password, $dbname);
 
-// 接続チェック
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // フォームが送信された場合の処理
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+/*if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = htmlspecialchars($_POST["username"]);
     $question = htmlspecialchars($_POST["question"]);
     $category = htmlspecialchars($_POST["category"]);
@@ -27,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$conn->close();
+$conn->close();*/
 ?>
 
 <!DOCTYPE html>
