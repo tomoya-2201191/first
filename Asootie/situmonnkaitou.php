@@ -31,11 +31,16 @@ $conn->close();*/
 </div>
 <div class="flex">
     <div class="left">
-        <h1>質問投稿</h1>
         <form method="post" action="">
             <div class="form-group">
-                <label for="username">ユーザー名</label>
-                <input type="text" id="username" name="username" required>
+                <?php
+            $pdo = new PDO($connect, USER, PASS);
+            $sql = $pdo->query('select * from user');
+            $row = $sql->fetch(PDO::FETCH_ASSOC);
+            echo '<div class="q_user">';
+            echo '<img src="img/icon.png" height="80" width="100">';
+            echo '<div class="q_profile">', $row['name'], '　さん', '<br>';  
+           ?>              
             </div>
             <div class="form-group">
                 <label for="question">質問内容</label>
