@@ -70,7 +70,7 @@ $conn->close();*/
             $sql = $pdo->query('select * from user');
             $row = $sql->fetch(PDO::FETCH_ASSOC);
                 echo '<label for="coins">ベストアンサーのお礼（コイン）</label>';
-                echo '<input type="number" id="coins" name="coins"'.$row['coins'].'required>';
+                echo '<input type="number" id="coins" name="coins"'.$row['coin'].'required>';
                 ?>
             </div>
     </div>
