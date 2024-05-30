@@ -55,7 +55,7 @@ $conn->close();*/
             </div>
     </div>
     <div class="right">
-                <label for="category">カテゴリを選択してください</label>
+                <label for="category">カテゴリを選択してください</label><br>
                 <select id="category" name="category" required>
                     <option value="業界">業界</option>
                     <option value="職種">職種</option>
@@ -65,8 +65,13 @@ $conn->close();*/
                 </select>
             
             <div class="form-group">
-                <label for="coins">ベストアンサーのお礼（コイン）</label>
-                <input type="number" id="coins" name="coins" value="100" required>
+            <?php
+            $pdo = new PDO($connect, USER, PASS);
+            $sql = $pdo->query('select * from user');
+            $row = $sql->fetch(PDO::FETCH_ASSOC);
+                echo '<label for="coins">ベストアンサーのお礼（コイン）</label>';
+                echo '<input type="number" id="coins" name="coins"'.$row['coins'].'required>';
+                ?>
             </div>
     </div>
         </form>
