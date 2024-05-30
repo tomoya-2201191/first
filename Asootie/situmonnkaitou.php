@@ -69,9 +69,9 @@ $conn->close();*/
             $pdo = new PDO($connect, USER, PASS);
             $sql = $pdo->query('select * from user');
             $row = $sql->fetch(PDO::FETCH_ASSOC);
-                echo '<label for="coins">ベストアンサーのお礼（コイン）</label>';
-                echo $row['coin'],"コイン保有中<br>";
-                echo '<input type="number" id="coins" name="coins"value="'.$row['coin'].'"required>';
+                echo '<label for="coins">ベストアンサーのお礼（コイン）</label><br>';
+                echo '<img src="img/coin.png" height="50" width="50">',$row['coin'],"コイン保有中<br>";
+                echo '<img src="img/coin.png" height="50" width="50">','<input type="number" id="coins" name="coins"value="'.$row['coin'].'"required>';
                 ?>
             </div>
     </div>
