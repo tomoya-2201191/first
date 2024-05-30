@@ -43,13 +43,15 @@ $conn->close();*/
             echo '</div></div>'
            ?>              
             </div>
+            <hr>
             <div class="form-group">
                 <label for="question">質問内容</label>
                 <textarea id="question" name="question" rows="4" required></textarea>
             </div>
+            <hr>
             <div class="form-group">
-                <button type="submit">投稿</button>
                 <button type="button" class="cancel" onclick="window.location.href='/'">キャンセル</button>
+                <button type="submit">投稿</button>
             </div>
     </div>
     <div class="right">
