@@ -4,7 +4,7 @@ require 'db-connect.php';
 require 'header.php';
 
 // データベース接続
-$conn = new mysqli($servername, $username, $password, $dbname);
+//$conn = new mysqli($servername, $username, $password, $dbname);
 
 // 接続チェック
 if ($conn->connect_error) {
