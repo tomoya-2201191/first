@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/header-top.css">
+    <!--<link rel="stylesheet" href="css/situmonnkaitou.css">-->
     <!-- <link rel="stylesheet" href="css/fade.css">  -->
 </head>
  

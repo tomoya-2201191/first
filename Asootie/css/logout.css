@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: white;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    margin: 10px 0;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input.back {
+    background-color: #4285f4;
+    color: white;
+}
+
+input.out {
+    background-color: #d9534f;
+    color: white;
+}
+
+input.login {
+    background-color: #4285f4;
+    color: white;
+    width: 50%;
+    margin: 20px auto 0;
+}

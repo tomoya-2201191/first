@@ -4,7 +4,8 @@ require 'db-connect.php';
 require 'header.php';
 
 ?>
-
+<link rel="stylesheet" href="css/profile.css">
+<div class="waku">
     <?php
     $pdo= new PDO($connect,USER,PASS);
     $sql=$pdo->query('select * from user');
@@ -33,34 +34,43 @@ require 'header.php';
                 </div>';
     }
     echo '</div>';
+    echo '</div>';
     //プロフィール//
     echo '<div class="profile">';
+    echo '<div class="t_gender">','性別','<br>','</div>';//テキスト//
     echo '<div class="p_gender">',$row['gender'],'<br>','</div>';
-    echo '<div class="p_status">',$row['status_id'],'<br>','</div>';
+    echo '<div class="t_status">','職業','<br>','</div>';//テキスト//
+    echo '<div class="p_status">';
     if ($row['status_id'] == 0) {
-        echo    '<div class="box1">
-                <div class="status1">STUDENT</div>
-                </div>';
+        echo    '在校生';
     } else if ($row['status_id'] == 1) {
-        echo    '<div class="box2">
-                <div class="status2">TEACHER</div>
-                </div>';
+        echo    '教師';
     } else {
-        echo    '<div class="box3">
-                <div class="status3">GRADUATE</div>
-                </div>';
+        echo    '卒業生';
     }
+    echo '</div>';
+    echo '<div class="t_coin">','就活コイン','<br>','</div>';//テキスト//
+    echo '<img src="img/coin.png" height="40" width="50">';
     echo '<div class="p_coin">',$row['coin'],'<br>','</div>';
     echo '</div>';
     //レコード//
     echo '<div class="record">';
+    echo '<div class="t_upload">','総質問数','<br>','</div>';//テキスト//
     echo '<div class="r_upload">',$row['upload'],'<br>','</div>';
-    echo '<div class="p_solution">',$row['solution'],'<br>','</div>';
-    echo '<div class="p_best">',$row['best_answer'],'<br>','</div>';
-    echo '<div class="p_other">',$row['other'],'<br>','</div>';
+    echo '<div class="t_solution">','解決質問数','<br>','</div>';//テキスト//
+    echo '<div class="r_solution">',$row['solution'],'<br>','</div>';
+    echo '<div class="t_best">','ベストアンサー数','<br>','</div>';//テキスト//
+    echo '<div class="r_best">',$row['best_answer'],'<br>','</div>';
+    echo '<div class="t_other">','その他の回答数','<br>','</div>';//テキスト//
+    echo '<div class="r_other">',$row['other'],'<br>','</div>';
     echo '</div>';
-    echo '</div>';
+    //ボタン//
+    echo '<button class="question_answer"><a class="a_color" href="#">質問＆回答一覧＞</a></button>';
+    echo '<button class="user_up"><a class="a_color" href="#">個人情報更新＞</a></button>';
     ?>
+</div>
+
+<script src="js/top.js"></script>
 </body>
 
 </html>
