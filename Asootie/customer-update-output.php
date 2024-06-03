@@ -12,6 +12,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gender = $_POST['gender'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    if (!empty($password) && ($password !== $confirm_password)) {
+        $_SESSION['update_error'] = "パスワードが一致しません。";
+        header("Location: customer-update-input.php");
+        exit();
+    }
 
     // SQL文の構築
     $sql = "UPDATE user SET name = :name, gender = :gender, mail_address = :email";
@@ -46,4 +53,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
-?>

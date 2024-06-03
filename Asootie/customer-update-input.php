@@ -45,8 +45,10 @@ if (!$user) {
         </select><br><br>
         <label for="email">E-mail Address:</label><br>
         <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user['mail_address']); ?>" required><br><br>
-        <label for="password">Password (新しいパスワードを入力しない場合は空のままにしてください):</label><br>
+        <label for="password">新しいパスワード (空の場合は変更されません):</label><br>
         <input type="password" id="password" name="password"><br><br>
+        <label for="confirm_password">パスワード確認:</label><br>
+        <input type="password" id="confirm_password" name="confirm_password"><br><br>
         <input type="submit" value="更新">
     </form>
 
@@ -57,5 +59,16 @@ if (!$user) {
     }
     ?>
 
+    <script>
+        document.querySelector("form").addEventListener("submit", function (event) {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
+
+            if (password !== confirmPassword) {
+                event.preventDefault();
+                alert("パスワードが一致しません。");
+            }
+        });
+    </script>
 </body>
 </html>
