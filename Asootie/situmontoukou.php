@@ -39,23 +39,37 @@ $conn->close();*/
             $row = $sql->fetch(PDO::FETCH_ASSOC);
             echo '<div class="q_user">';
             echo '<img src="img/icon.png" height="80" width="100">';
-            echo '<div class="q_profile">', $row['name'], '　さん', '<br>';  
+            echo '<div class="q_profile">', $row['name'], '　さん', '<br>';
+            if ($row['status_id'] == 0) {
+                echo    '<div class="box1">
+                        <div class="status1">STUDENT</div>
+                        </div>';
+            } else if ($row['status_id'] == 1) {
+                echo    '<div class="box2">
+                        <div class="status2">TEACHER</div>
+                        </div>';
+            } else {
+                echo    '<div class="box3">
+                        <div class="status3">GRADUATE</div>
+                        </div>';
+            }  
             echo '</div></div>'
            ?>              
             </div>
             <hr>
-            <div class="form-group">
-                <label for="question">質問内容</label>
-                <textarea id="question" name="question" rows="4" required></textarea>
+            <div class="form-group1">
+                <textarea id="question" name="question" rows="15" class="t-area" 
+                placeholder="質問を入力してください" required></textarea>
             </div>
             <hr>
             <div class="form-group">
                 <button type="button" class="cancel" onclick="window.location.href='/'">キャンセル</button>
-                <button type="submit">投稿</button>
+                <button type="submit" class="toukou">投稿</button>
             </div>
     </div>
     <div class="right">
-                <label for="category">カテゴリを選択してください</label><br>
+        <div class="q-category">
+                <h3>カテゴリを選択してください</h3>
                 <select id="category" name="category" required>
                     <option value="業界">業界</option>
                     <option value="職種">職種</option>
@@ -63,17 +77,25 @@ $conn->close();*/
                     <option value="面接対策">面接対策</option>
                     <option value="その他">その他</option>
                 </select>
-            
-            <div class="form-group">
+        </div>
+        <div class="s-coin">
             <?php
             $pdo = new PDO($connect, USER, PASS);
             $sql = $pdo->query('select * from user');
             $row = $sql->fetch(PDO::FETCH_ASSOC);
-                echo '<label for="coins">ベストアンサーのお礼（コイン）</label><br>';
-                echo '<img src="img/coin.png" height="50" width="50">',$row['coin'],"コイン保有中<br>";
-                echo '<img src="img/coin.png" height="50" width="50">','<input type="number" id="coins" name="coins"value="'.$row['coin'].'"required>';
+                
+                echo '<h3>ベストアンサーのお礼（コイン）</h3>';
+                echo '<div class="coin-group">';
+                echo '<img src="img/coin.png" height="50" width="50">';
+                echo '<div class="coin-text">',$row['coin'],"コイン保有中<br>";
+                echo '</div></div>';
+                echo '<div class="coin-group">';
+                echo '<img src="img/coin.png" height="50" width="50">';
+                echo '<div class="coin-text">';
+                echo '<input type="number" id="coins" name="coins"value="'.$row['coin'].'"required>';
+                echo '</div></div>';
                 ?>
-            </div>
+        </div>
     </div>
         </form>
 </div>
