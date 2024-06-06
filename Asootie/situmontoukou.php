@@ -35,7 +35,10 @@ $conn->close();*/
             <div class="form-group">
                 <?php
             $pdo = new PDO($connect, USER, PASS);
-            $sql = $pdo->query('select * from user');
+            $sql = $pdo->prepare('SELECT user.*
+            FROM user
+            WHERE user.user_id = ?');
+            $sql->execute([$_SESSION['user_id']]);
             $row = $sql->fetch(PDO::FETCH_ASSOC);
             echo '<div class="q_user">';
             echo '<img src="img/icon.png" height="80" width="100">';

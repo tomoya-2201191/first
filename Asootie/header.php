@@ -76,5 +76,5 @@
  
  
     <div class="question">
-        <a class="questionn" href="question.php">質問・相談はこちら</a>
+        <a class="questionn" href="situmontoukou.php">質問・相談はこちら</a>
 </div>
