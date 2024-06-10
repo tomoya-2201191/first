@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/header-top.css">
-    <!--<link rel="stylesheet" href="css/situmonnkaitou.css">-->
+    <link rel="stylesheet" href="css/situmonnkaitou.css">
+    <link rel="stylesheet" href="css/answer.css">
     <!-- <link rel="stylesheet" href="css/fade.css">  -->
 </head>
  
@@ -41,12 +42,14 @@
                 <img src="img/asootie.png" alt="ロゴ">
             </a>
         </div>
-        <!-- <div class="search_box">
- 
-            <form method="get" action="#" class="search">
+
+        <div class="search_box">
+
+            <form method="get" action="search.php" class="search">
                 <div class="searchForm">
-                    <input type="text" class="searchForm-input" placeholder="Q&Aを探す">
-                    <button type="submit" class="searchForm-submit"></button>
+                <input type="text" name="search_query" class="searchForm-input" placeholder="Q&Aを探す">
+                <button type="submit" class="searchForm-submit">検索</button>
+
                 </div>
             </form>
         </div> -->
@@ -75,5 +78,5 @@
  
  
     <div class="question">
-        <a class="questionn" href="question.php">質問・相談はこちら</a>
+        <a class="questionn" href="situmontoukou.php">質問・相談はこちら</a>
 </div>

@@ -8,12 +8,14 @@
     <title>ログアウト</title>
 </head>
 <body>
+        <?php require 'header.php'; ?>
             <?php
                 //ログアウト処理の実行
                 unset($_SESSION['user']);
                 echo '<h1> ログアウトしました。</h1>';
+                echo '<p> またのご利用お待ちしております。</p>';
                 //ログイン画面に遷移する
-                echo '<form action = "login-input.php" methods = "post">';
+                echo '<form action = "login.php" methods = "post">';
                     echo '<input type = "submit" class="login" value = "ログイン画面へ">';
                 echo '</form>';
             ?>
