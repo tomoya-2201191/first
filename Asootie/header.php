@@ -43,7 +43,8 @@
             </a>
         </div>
 
-        <div class="search_box">
+        <?php
+        /*<div class="search_box">
 
             <form method="get" action="search.php" class="search">
                 <div class="searchForm">
@@ -52,16 +53,15 @@
 
                 </div>
             </form>
-        </div> 
+        </div>*/?> 
  
  
-        <?php
-        /*<form action="#" class="search-form-1">
+        <form action="#" class="search-form-1">
             <label>
                 <input type="text" placeholder="キーワードを入力">
             </label>
             <button type="submit" aria-label="検索"></button>
-        </form>*/ ?>
+        </form>
  
  
  
