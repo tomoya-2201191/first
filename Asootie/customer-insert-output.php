@@ -1,37 +1,46 @@
 <?php
-// データベース接続情報
-$servername = "mysql302.phy.lolipop.lan";
-$username = "LAA1516825";
-$password = "aso1234";
-$dbname = "LAA1516825-aso";
+session_start();
+require 'db-connect.php';
 
-try {
-    // データベースに接続
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
-    // エラーモードを例外に設定
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $gender = $_POST['gender'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name = $_POST['name'];
-        $gender = $_POST['gender'];
-        $email = $_POST['email'];
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-        // ユーザーをデータベースに挿入
-        $sql = "INSERT INTO user (name, gender, pass, mail_address) VALUES (:name, :gender, :pass, :email)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':gender', $gender);
-        $stmt->bindParam(':pass', $password);
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-
-        echo "登録が完了しました。";
-        // ログインページにリダイレクト
-        header("Location: index.php");
+    // パスワードの一致を確認
+    if ($password !== $confirm_password) {
+        $_SESSION['registration_error'] = "パスワードが一致しません。";
+        header("Location: customer-insert-input.php");
         exit();
     }
-} catch (PDOException $e) {
-    echo "データベース接続に失敗しました: " . $e->getMessage();
+
+    // パスワードをハッシュ化
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    try {
+        // SQL文を準備
+        $sql = "INSERT INTO user (name, gender, mail_address, pass) VALUES (:name, :gender, :email, :password)";
+        $stmt = $pdo->prepare($sql);
+
+        // パラメータをバインド
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':gender', $gender);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $hashed_password);
+
+        // 実行
+        $stmt->execute();
+
+        // 登録成功
+        $_SESSION['user_id'] = $pdo->lastInsertId();
+        $_SESSION['name'] = $name;
+        header("Location: registration-complete.php");
+        exit();
+
+    } catch (PDOException $e) {
+        echo "データベース接続に失敗しました: " . $e->getMessage();
+    }
 }
 ?>

@@ -20,12 +20,12 @@ require 'db-connect.php';
         <div class="admin-img">
             <img src="img/king-logo.png" width="150" height="150">
         </div>
-        <form action="#" method="post">
+        <form action="admin-login-output.php" method="post">
             <input type="text" class="textbox" name="email" placeholder="Email Address" required>
             <div class="under"></div>
             <input type="text" class="textbox" name="password" placeholder="Password" required>
             <div class="under"></div>
-            <button type="submit" class="login-btn">ログイン</button>
+            <button type="submit" name="login" class="login-btn">ログイン</button>
         </form>
     </div>
 </body>

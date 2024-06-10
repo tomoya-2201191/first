@@ -13,24 +13,16 @@ if (!isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login-success.css">
     <title>ログイン完了</title>
     <style>
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #fff;
-            background-color: #4CAF50;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-        }
     </style>
 </head>
 <body>
+
+    <div class=login-success >
     <h1>ログイン完了</h1>
-    <p><?php echo htmlspecialchars($_SESSION['name']); ?>さん、ログインが成功しました。</p>
-    <a href="index.php" class="button">トップへ</a>
+    <a href="top.php" class="button">トップへ</a>
+    </div>
 </body>
 </html>

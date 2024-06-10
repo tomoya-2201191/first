@@ -1,5 +1,8 @@
-<?php session_start(); ?>
-<?php require 'db-connect.php'; ?>
+<?php
+session_start();
+require 'db-connect.php';
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -8,8 +11,9 @@
     <title>会員登録</title>
 </head>
 <body>
-<h1>新規登録フォーム</h1>
+
     <form action="customer-insert-output.php" method="post">
+        <img id="logo" src="img/asootie.png" alt="ASOO！知恵袋のロゴ">
         <label for="name">名前:</label><br>
         <input type="text" id="name" name="name" required><br><br>
         <label for="gender">性別:</label><br>
@@ -21,8 +25,17 @@
         <input type="email" id="email" name="email" required><br><br>
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password" required><br><br>
+        <label for="confirm_password">確認用 Password:</label><br>
+        <input type="password" id="confirm_password" name="confirm_password" required><br><br>
         <input type="submit" value="新規登録">
     </form>
+
+    <?php
+    if (isset($_SESSION['registration_error'])) {
+        echo '<p class="error">' . htmlspecialchars($_SESSION['registration_error']) . '</p>';
+        unset($_SESSION['registration_error']);
+    }
+    ?>
+
 </body>
 </html>
-<?php require 'footer.php'; ?>

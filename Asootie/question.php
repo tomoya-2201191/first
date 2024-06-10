@@ -18,7 +18,11 @@ if (isset($_POST['kyokan'])) {
 <div class="left">
     <?php
     $pdo = new PDO($connect, USER, PASS);
-    $sql = $pdo->query('select * from user');
+    $sql = $pdo->prepare('SELECT question.*, user.*
+    FROM question
+    INNER JOIN user ON question.q_user_id = user.user_id 
+    WHERE question.q_id = ?');
+    $sql->execute([$_GET['id']]);
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     echo '<div class="q_user">';
     echo '<img src="img/icon.png" height="80" width="100">';
@@ -50,7 +54,7 @@ if (isset($_POST['kyokan'])) {
     echo '<button type="submit" name="kyokan" class="btn1">共感した ', $row['feel'], '</button></form>';
     echo '<hr><br>';
     echo '<button class="check_answer"><a class="a_color" href="view-answer.php?q_id=' . $id . '">回答を見る＞</a></button>';
-    echo '<button class="q_answer"><a class="a_color" href="ranking.php?q_id=' . $id . '">回答をする＞</a></button>';
+    echo '<button class="q_answer"><a class="a_color" href="answer.php?q_id=' . $id . '">回答をする＞</a></button>';
     ?>
 </div>
 
