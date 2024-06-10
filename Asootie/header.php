@@ -24,10 +24,11 @@
 
         <div class="search_box">
 
-            <form method="get" action="#" class="search">
+            <form method="get" action="search.php" class="search">
                 <div class="searchForm">
-                    <input type="text" class="searchForm-input" placeholder="Q&Aを探す">
-                    <button type="submit" class="searchForm-submit"></button>
+                <input type="text" name="search_query" class="searchForm-input" placeholder="Q&Aを探す">
+                <button type="submit" class="searchForm-submit">検索</button>
+
                 </div>
             </form>
         </div>

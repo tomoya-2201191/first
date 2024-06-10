@@ -4,78 +4,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asoo!知恵袋</title>
+    <title>検索結果</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div class="header-top"></div>
-
     <header>
         <div class="logo">
-            <img src="img/asootie.png" alt="ロゴ">
+            <a href="top.php"><img src="img/asootie.png" alt="ロゴ"></a>
         </div>
-
         <div class="search_box">
             <form method="get" action="search.php" class="search">
                 <div class="searchForm">
-                    <input type="text" name="keyword" class="searchForm-input" placeholder="Q&Aを探す">
-                    <button type="submit" class="searchForm-submit"></button>
+                    <input type="text" name="search_query" class="searchForm-input" placeholder="Q&Aを探す" value="<?php echo htmlspecialchars($_GET['search_query'] ?? '', ENT_QUOTES); ?>">
+                    <button type="submit" class="searchForm-submit">検索</button>
                 </div>
             </form>
         </div>
-
         <div class="icon">
             <img src="img/icon.png" alt="アイコン">
         </div>
     </header>
 
-    <div class="question">
-        <a class="questionn" href="question.php">aaaaaaaaaa</a>
+    <div class="contents">
+        <p>検索結果一覧</p>
     </div>
-    <div class="a1"></div>
 
     <div class="flex">
-        <div class="aaa">
-            <?php
-            // MySQL接続情報
-            $servername = "mysql302.phy.lolipop.lan";
-            $username = "LAA1516825";
-            $password = "aso1234";
-            $dbname = "LAA1516825-aso";
+        <div class="left">
+            <div class="top-question">
+                <ul>
+                    <?php
+                    session_start();
+                    require 'db-connect.php';
 
-            // MySQLデータベースに接続
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+                    // Get search query
+                    $search_query = isset($_GET['search_query']) ? $_GET['search_query'] : '';
 
-            // フォームからキーワードを取得
-            if (isset($_GET['keyword'])) {
-                $keyword = $_GET['keyword'];
+                    // Pagination settings
+                    $items_per_page = 7;
+                    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                    $offset = ($page - 1) * $items_per_page;
 
-                // キーワードを使用して検索クエリを作成
-                $sql = "SELECT * FROM question WHERE q_text LIKE '%$keyword%'";
-                $result = $conn->query($sql);
+                    // Prepare SQL query
+                    $sql = $pdo->prepare("SELECT * FROM question JOIN category ON question.category_id = category.category_id WHERE q_text LIKE :search_query LIMIT :limit OFFSET :offset");
+                    $sql->bindValue(':search_query', '%' . $search_query . '%', PDO::PARAM_STR);
+                    $sql->bindValue(':limit', $items_per_page, PDO::PARAM_INT);
+                    $sql->bindValue(':offset', $offset, PDO::PARAM_INT);
+                    $sql->execute();
 
-                // 検索結果を表示
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<p>" . $row["q_text"] . "</p>";
+                    // Fetch total items for pagination
+                    $sql_count = $pdo->prepare("SELECT COUNT(*) FROM question WHERE q_text LIKE :search_query");
+                    $sql_count->bindValue(':search_query', '%' . $search_query . '%', PDO::PARAM_STR);
+                    $sql_count->execute();
+                    $total_items = $sql_count->fetchColumn();
+                    $total_pages = ceil($total_items / $items_per_page);
+
+                    // Display search results
+                    foreach ($sql as $row) {
+                        $category = $row['category_name'];
+                        $id = $row['q_id'];
+                        $text = $row['q_text'];
+                        $answer = $row['answer_sum'];
+                        $date = $row['q_date'];
+
+                        // Limit text length
+                        if (mb_strlen($text) > 38) {
+                            $text = mb_substr($text, 0, 38) . '...';
+                        }
+                        echo "<div class='top-category'>{$category}</div>";
+                        echo "<a class='top-text' href='question.php?id={$id}'>{$text}</a>";
+                        echo "<div class='flex'>";
+                        echo "<div class='top-answer-date'>💬 {$answer}　{$date}</div>";
+                        echo "</div><hr><br>";
                     }
-                } else {
-                    echo "0 results";
+                    ?>
+                </ul>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pager">
+                <?php
+                for ($i = 1; $i <= $total_pages; $i++) {
+                    echo "<a href='?search_query=" . urlencode($search_query) . "&page={$i}'>{$i}</a> ";
                 }
-            }
-
-            $conn->close();
-            ?>
+                ?>
+            </div>
         </div>
-        <div class="bbb"></div>
-    </div>
 
-    <script src="js/top.js"></script>
+        <div class="right">
+            <div class="category">
+                <?php
+                $sql = $pdo->query("SELECT * FROM category");
+                echo '<br>カテゴリ一覧<hr><ul>';
+                foreach ($sql as $row) {
+                    $id = $row['category_id'];
+                    echo "<li><a class='category-black' href='?id={$id}'>{$row['category_name']}</a></li><br>";
+                }
+                echo '</ul><hr>';
+                ?>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
