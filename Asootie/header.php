@@ -52,15 +52,16 @@
 
                 </div>
             </form>
-        </div> -->
+        </div> 
  
  
-        <form action="#" class="search-form-1">
+        <?php
+        /*<form action="#" class="search-form-1">
             <label>
                 <input type="text" placeholder="キーワードを入力">
             </label>
             <button type="submit" aria-label="検索"></button>
-        </form>
+        </form>*/ ?>
  
  
  
