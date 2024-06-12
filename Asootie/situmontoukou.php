@@ -74,7 +74,7 @@ require 'header.php';
                 echo '<div class="coin-group">';
                 echo '<img src="img/coin.png" height="50" width="50">';
                 echo '<div class="coin-text">';
-                echo '<input type="number" id="coins" name="coins"value="'.$row['coin'].'"max="'.$row['coin'].'"required>';
+                echo '<input type="number" id="coins" name="coins" min="0" value="0" max="'.$row['coin'].'"required>';
                 echo '</div></div>';
                 ?>
         </div>
