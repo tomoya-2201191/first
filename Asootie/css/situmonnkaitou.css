@@ -47,3 +47,7 @@ select {
     justify-content: center;
     align-items: center;
 }
+.coin{
+    display: flex;
+    align-items: center;
+}
