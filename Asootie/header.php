@@ -46,17 +46,10 @@
                 <img src="img/asootie.png" alt="ロゴ">
             </a>
         </div>
-        <!-- <div class="search_box">
+
+       
  
-            <form method="get" action="#" class="search">
-                <div class="searchForm">
-                    <input type="text" class="searchForm-input" placeholder="Q&Aを探す">
-                    <button type="submit" class="searchForm-submit"></button>
-                </div>
-            </form>
-        </div> -->
-
-
+ 
         <form action="#" class="search-form-1">
             <label>
                 <input type="text" placeholder="キーワードを入力">
