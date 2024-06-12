@@ -1,4 +1,5 @@
-<footer></footer>
- <script src="js/top.js"></script> 
+<footer>
+</footer>
 
-</html>
+
+
