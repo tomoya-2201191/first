@@ -51,14 +51,19 @@ if (isset($_POST['kyokan'])) {
     echo '<div class="q_text">', $row['q_text'], '</div>';
     echo '<form method="post" action="">';
     echo '<input type="hidden" name="q_id" value="', $id, '">';
-    echo '<button type="submit" name="kyokan" class="btn1">共感した ', $row['feel'], '</button></form>';
+    echo '<button type="submit" name="kyokan" class="kyokan">共感した ', $row['feel'], '</button></form>';
     echo '<div class="coin">';
     echo '<img src="img/coin.png" height="50" width="50">';
     echo '<div class="coin-text">',$row['coin'],"コイン<br>";
     echo '</div></div>';
     echo '<hr><br>';
     echo '<button class="check_answer"><a class="a_color" href="view-answer.php?q_id=' . $id . '">回答を見る＞</a></button>';
-    echo '<button class="q_answer"><a class="a_color" href="answer.php?q_id=' . $id . '">回答をする＞</a></button>';
+    if($row['flag'] == 0){
+        echo '<button class="q_answer"><a class="a_color" href="answer.php?q_id=' . $id . '">回答をする＞</a></button>';
+    }else{
+        echo '<button class="q_answer"><a class="a_color">解決済み！</a></button>';
+    }
+    
     ?>
 </div>
 

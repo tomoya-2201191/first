@@ -3,6 +3,13 @@ session_start();;
 require 'db-connect.php';
 require 'header.php';
 
+// '参考になる'ボタンが押されたときの処理
+if (isset($_POST['sankou'])) {
+    $a_id = $_POST['a_id'];
+    $update_sql = 'UPDATE answer SET reference = reference + 1 WHERE a_id = ?';
+    $stmt = $pdo->prepare($update_sql);
+    $stmt->execute([$a_id]);
+}
 ?>
 <div class="contents"><p>回答一覧</p></div>
 
@@ -10,8 +17,6 @@ require 'header.php';
 
 <div class="left">
     <?php
-    // データベース接続のためのコード
-    // $pdo = new PDO('mysql:host=localhost;dbname=your_database_name;charset=utf8', 'username', 'password');
 
     $sql = $pdo->prepare('
         SELECT answer.*, user.*
@@ -51,7 +56,23 @@ require 'header.php';
             }else{
                 echo '<div class="a_text"><p>', $row['a_text'], '</p></div>';
             }
-            
+            echo '<form method="post" action="">';
+            echo '<input type="hidden" name="a_id" value="', $row['a_id'], '">';
+            echo '<button type="submit" name="sankou" class="sankou">参考になる ', $row['reference'], '</button></form>';
+
+            $sql = $pdo->prepare('
+            SELECT *
+            FROM question 
+            WHERE q_id = ?
+        ');
+        $sql->execute([$id]);
+        $question = $sql->fetch(PDO::FETCH_ASSOC);
+
+        // 質問が存在するか、かつセッションのユーザーが質問者であることをチェック
+        if ($question && $question['q_user_id'] == $_SESSION['user_id']) {
+            // 回答のIDは `$row['a_id']` と仮定
+            echo '<button class="ba_btn"><a class="a_color" href="ba-select.php?a_id=' . $row['a_id'] . '">ベストアンサーに選ぶ</a></button>';
+        }
             echo '<hr>';
         }
     }
