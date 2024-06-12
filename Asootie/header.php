@@ -43,7 +43,8 @@
             </a>
         </div>
 
-        <div class="search_box">
+        <?php
+        /*<div class="search_box">
 
             <form method="get" action="search.php" class="search">
                 <div class="searchForm">
@@ -52,7 +53,7 @@
 
                 </div>
             </form>
-        </div> -->
+        </div>*/?> 
  
  
         <form action="#" class="search-form-1">
