@@ -85,7 +85,6 @@ if (isset($_POST['kyokan'])) {
 </div>
 
 </div>
-<script src="js/top.js"></script> <!-- JavaScriptファイルの読み込み -->
-</body>
-
-</html>
+<?php
+require 'footer.php';
+?>
