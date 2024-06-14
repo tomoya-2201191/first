@@ -178,6 +178,7 @@ a{
      width: 700px;
      margin-top: 50px;
      margin-left: auto;
+     margin-bottom: 20px;
  }
 
  .left-1 {
@@ -418,6 +419,7 @@ a{
     font-weight: bold; /* 文字を太字に */
     text-transform: uppercase; /* 文字を大文字に */
     cursor: pointer; /* カーソルをポインタに変更 */
+    margin-bottom: 10px;
 }
 
 /* .check_answer ボタンのホバー時のスタイル */
@@ -529,6 +531,7 @@ a{
     font-weight: bold; /* 文字を太字に */
     text-transform: uppercase; /* 文字を大文字に */
     cursor: pointer; /* カーソルをポインタに変更 */
+    margin-bottom: 10px;
 }
 
 /* .check_answer ボタンのホバー時のスタイル */

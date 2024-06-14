@@ -1,31 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>検索結果</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-    <header>
-        <div class="logo">
-            <a href="top.php"><img src="img/asootie.png" alt="ロゴ"></a>
-        </div>
-        <div class="search_box">
-            <form method="get" action="search.php" class="search">
-                <div class="searchForm">
-                    <input type="text" name="search_query" class="searchForm-input" placeholder="Q&Aを探す" value="<?php echo htmlspecialchars($_GET['search_query'] ?? '', ENT_QUOTES); ?>">
-                    <button type="submit" class="searchForm-submit">検索</button>
-                </div>
-            </form>
-        </div>
-        <div class="icon">
-            <img src="img/icon.png" alt="アイコン">
-        </div>
-    </header>
+<?php
+session_start();;
+require 'db-connect.php';
+require 'header.php';
+?>
 
     <div class="contents">
         <p>検索結果一覧</p>
@@ -36,8 +13,6 @@
             <div class="top-question">
                 <ul>
                     <?php
-                    session_start();
-                    require 'db-connect.php';
 
                     // Get search query
                     $search_query = isset($_GET['search_query']) ? $_GET['search_query'] : '';

@@ -50,7 +50,7 @@
        
  
  
-        <form action="#" class="search-form-1">
+        <form method="get" action="search.php" class="search-form-1">
             <label>
                 <input type="text" placeholder="キーワードを入力">
             </label>
@@ -60,7 +60,7 @@
 
 
         <div class="icon">
-            <a href="#">
+            <a href="profile.php">
                 <img src="img/icon.png">
             </a>
         </div>

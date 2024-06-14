@@ -9,7 +9,7 @@ require 'header.php';
     <?php
     $pdo= new PDO($connect,USER,PASS);
     $sql = $pdo->prepare('select * from user where user_id=?');
-    $sql->execute([$_GET['user_id']]);
+    $sql->execute([$_SESSION['user_id']]);
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     //ユーザー//
     echo '<div class="user">';
@@ -70,7 +70,7 @@ require 'header.php';
     echo '<div class="t_other">','その他の回答数','<br>','</div>';//テキスト//
     echo '<div class="r_other">',$row['other'],'<br>','</div>';
     echo '</div>';
-    $id = $_GET['user_id'];
+    $id = $_SESSION['user_id'];
     //ボタン//
     echo '<button class="question_answer"><a class="a_color" href="question&answer.php?q&a_id=' . $id . '">質問＆回答一覧＞</a></button>';
     echo '<button class="user_up"><a class="a_color" href="customer-update-input.php?id=' . $id . '">個人情報更新＞</a></button>';
