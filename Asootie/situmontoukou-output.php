@@ -66,7 +66,7 @@ require 'header.php';
     <div class="left">
 
         <?php
-            echo $success_message;
+           echo '<div class="no-answer"><h3>',$success_message,'</h3></div><hr>';
         ?>
 
     </div>

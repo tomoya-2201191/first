@@ -4,8 +4,8 @@
     flex-shrink: 0;
     border-radius: 40px;
     background: white; /* 背景を白に設定 */
-    border: 2px solid #B5E5FA; /* 元の背景色を枠線に設定 */
-    color: #B5E5FA; /* 文字色を枠線と同じ色に設定 */
+    border: 2px solid #4dc7fa; /* 元の背景色を枠線に設定 */
+    color: #4dc7fa; /* 文字色を枠線と同じ色に設定 */
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     text-align: center; /* 文字を中央揃えに */
     line-height: 58px; /* ボタンの高さと同じにして文字を中央に垂直配置 */
@@ -16,7 +16,7 @@
 }
 
 .toukou:hover {
-    background: #B5E5FA; /* ホバー時の背景色を元の背景色に設定 */
+    background: #4dc7fa; /* ホバー時の背景色を元の背景色に設定 */
     color: white; /* ホバー時の文字色を白に設定 */
 }
 

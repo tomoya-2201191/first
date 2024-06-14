@@ -3,20 +3,49 @@ session_start();;
 require 'db-connect.php';
 require 'header.php';
 
-// '参考になる'ボタンが押されたときの処理
-if (isset($_POST['sankou'])) {
-    $a_id = $_POST['a_id'];
-    $update_sql = 'UPDATE answer SET reference = reference + 1 WHERE a_id = ?';
-    $stmt = $pdo->prepare($update_sql);
-    $stmt->execute([$a_id]);
-}
 ?>
-<div class="contents"><p>回答一覧</p></div>
+<div class="contents"><p>ベストアンサー選択</p></div>
 
 <div class="flex">
 
 <div class="left">
     <?php
+
+    
+    // ベストアンサーフラッグを更新
+    $updateAnswer = $pdo->prepare('
+    UPDATE answer 
+    SET ba_flag = 1 
+    WHERE a_id = ?
+    ');
+    $updateSuccess1 = $updateAnswer->execute([$_POST['a_id']]);
+
+    //解決済みフラッグを更新
+    $updateQuestion = $pdo->prepare('
+    UPDATE question 
+    SET flag = 1 
+    WHERE q_id = ?
+    ');
+    $updateSuccess2 = $updateQuestion->execute([$_POST['q_id']]);
+
+    // 質問情報の取得
+    $question = $pdo->prepare('SELECT * FROM question WHERE q_id = ?');
+    $question->execute([$_POST['q_id']]);
+    $questionRow = $question->fetch(PDO::FETCH_ASSOC); // fetchAll()をfetch()に変更
+    $getCoin = $questionRow['coin'];
+
+    $user = $pdo->prepare('SELECT * FROM user WHERE user_id = ?');
+    $user->execute([$_POST['a_user_id']]);
+    $userRow = $user->fetch(PDO::FETCH_ASSOC); // fetchAll()をfetch()に変更
+    $updateCoin = $userRow['coin'] + $getCoin;
+
+    $updateUser = $pdo->prepare('
+        UPDATE user
+        INNER JOIN answer ON user.user_id = answer.a_user_id
+        SET user.coin = ?, user.best_answer = user.best_answer + 1, user.other = user.other - 1
+        WHERE answer.a_id = ?
+    ');
+    $updateSuccess3 = $updateUser->execute([$updateCoin, $_POST['a_id']]);
 
     $sql = $pdo->prepare('
         SELECT answer.*, user.*
@@ -24,12 +53,10 @@ if (isset($_POST['sankou'])) {
         INNER JOIN user ON answer.a_user_id = user.user_id 
         WHERE answer.q_id = ?
     ');
-    $id = $_GET['q_id'];
+    $id = $_POST['q_id'];
     $sql->execute([$id]);
     $results = $sql->fetchAll();
-    if (count($results) === 0) {
-        echo '<div class="no-answer"><h3>回答はありません</h3></div>';
-    } else {
+    echo '<div class="no-answer"><h3>ベストアンサーに選択しました！</h3></div><hr>';
         foreach ($results as $row) {
             echo '<div class="a_user">';
             echo '<img src="img/icon.png" height="80" width="110">';
@@ -58,31 +85,17 @@ if (isset($_POST['sankou'])) {
             }
             echo '<form method="post" action="">';
             echo '<input type="hidden" name="a_id" value="', $row['a_id'], '">';
-            echo '<button type="submit" name="sankou" class="sankou">参考になる ', $row['reference'], '</button></form>';
+            echo '<button type="submit" name="sankou" class="sankou">参考になる ', $row['reference'], '</button></form><hr>';
 
-            $sql = $pdo->prepare('
+            /*$sql = $pdo->prepare('
             SELECT *
             FROM question 
             WHERE q_id = ?
         ');
         $sql->execute([$id]);
-        $question = $sql->fetch(PDO::FETCH_ASSOC);
-
-
-        // 質問が存在するか、かつセッションのユーザーが質問者であることをチェック
-        if ($question && $question['q_user_id'] == $_SESSION['user_id'] && $question['flag'] == 0) {
-            // 回答のIDは `$row['a_id']` と仮定
-            echo '<form method="post" action="ba-select.php">';
-            echo '<input type="hidden" name="a_user_id" value="',$row['a_user_id'],'">';
-            echo '<input type="hidden" name="q_id" value="',$id,'">';
-            echo '<button type="submit" name="a_id" value="',$row['a_id'],'"class="ba_btn"><a class="a_color" >ベストアンサーに選ぶ</a></button>';
-            echo '</form>';
+        $question = $sql->fetch(PDO::FETCH_ASSOC);*/
         }
-            echo '<hr>';
-        }
-    }
-    echo '<button class="back" onclick="location.href=\'question.php?id=' . $id . '\'">＜戻る</button>';
-    
+    //echo '<button class="back"><a class="modoru-color" href="question.php?id=' . $id . '">＜戻る</a></button>';
     ?>
 </div>
 
