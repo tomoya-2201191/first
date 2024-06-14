@@ -81,7 +81,8 @@ if (isset($_POST['sankou'])) {
             echo '<hr>';
         }
     }
-    echo '<button class="back"><a class="modoru-color" href="question.php?id=' . $id . '">＜戻る</a></button>';
+    echo '<button class="back" onclick="location.href=\'question.php?id=' . $id . '\'">＜戻る</button>';
+    
     ?>
 </div>
 

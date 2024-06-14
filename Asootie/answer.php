@@ -75,7 +75,7 @@ require 'header.php';
             placeholder="回答を入力してください" required></textarea>
         </div>
         <hr>
-        <button type="submit" class="kaitou">回答する＞</button>
+        <button type="submit" class="kaitou">回答する</button>
     </form>
 </div>
 
