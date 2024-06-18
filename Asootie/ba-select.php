@@ -32,7 +32,7 @@ require 'header.php';
     $update = $pdo->prepare('
         UPDATE user
         INNER JOIN question ON user.user_id = question.q_user_id
-        SET user.solution = user.solution + 1,user.upload = user.upload - 1
+        SET user.solution = user.solution + 1
         WHERE question.q_id = ?
     ');
     $updateQuestionUser = $update->execute([$_POST['q_id']]);
