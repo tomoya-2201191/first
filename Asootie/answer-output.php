@@ -37,6 +37,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $updateAnswerStmt = $pdo->prepare('UPDATE question SET answer_sum = ? WHERE q_id = ?');
     $updateSuccess = $updateAnswerStmt->execute([$newAnswerCount, $q_id]);
 
+    //回答数の更新
+    $updateUser = $pdo->prepare('
+        UPDATE user
+        SET user.other = user.other + 1
+        WHERE user_id = ?
+        ');
+        $updateSuccess = $updateUser->execute([$_SESSION['user_id']]);
+    
+
 } else {
     $error_message = "無効なリクエストです。";
     header("Location: situmontoukou.php");
@@ -91,7 +100,7 @@ echo '<div class="left">';
             echo '<hr>';
         }
     }
-    echo '<button class="back"><a class="modoru-color" href="question.php?id=' . $q_id . '">＜戻る</a></button>';
+    echo '<button class="back" onclick="location.href=\'question.php?id=' . $id . '\'">＜戻る</button>';
     ?>
 </div>
 

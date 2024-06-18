@@ -28,24 +28,45 @@ require 'header.php';
     ');
     $updateSuccess2 = $updateQuestion->execute([$_POST['q_id']]);
 
+    //解決済み質問数の更新(投稿者)
+    $update = $pdo->prepare('
+        UPDATE user
+        INNER JOIN question ON user.user_id = question.q_user_id
+        SET user.solution = user.solution + 1,user.upload = user.upload - 1
+        WHERE question.q_id = ?
+    ');
+    $updateQuestionUser = $update->execute([$_POST['q_id']]);
+
     // 質問情報の取得
     $question = $pdo->prepare('SELECT * FROM question WHERE q_id = ?');
     $question->execute([$_POST['q_id']]);
-    $questionRow = $question->fetch(PDO::FETCH_ASSOC); // fetchAll()をfetch()に変更
+    $questionRow = $question->fetch(PDO::FETCH_ASSOC);
     $getCoin = $questionRow['coin'];
 
     $user = $pdo->prepare('SELECT * FROM user WHERE user_id = ?');
     $user->execute([$_POST['a_user_id']]);
-    $userRow = $user->fetch(PDO::FETCH_ASSOC); // fetchAll()をfetch()に変更
+    $userRow = $user->fetch(PDO::FETCH_ASSOC);
     $updateCoin = $userRow['coin'] + $getCoin;
 
-    $updateUser = $pdo->prepare('
+    //ベストアンサー数の更新(回答者)
+    if($userRow['other'] == 0){
+        $updateUser = $pdo->prepare('
+        UPDATE user
+        INNER JOIN answer ON user.user_id = answer.a_user_id
+        SET user.coin = ?, user.best_answer = user.best_answer + 1
+        WHERE answer.a_id = ?
+        ');
+        $updateSuccess3 = $updateUser->execute([$updateCoin, $_POST['a_id']]);
+    }else{
+        $updateUser = $pdo->prepare('
         UPDATE user
         INNER JOIN answer ON user.user_id = answer.a_user_id
         SET user.coin = ?, user.best_answer = user.best_answer + 1, user.other = user.other - 1
         WHERE answer.a_id = ?
-    ');
-    $updateSuccess3 = $updateUser->execute([$updateCoin, $_POST['a_id']]);
+        ');
+        $updateSuccess3 = $updateUser->execute([$updateCoin, $_POST['a_id']]);
+    }
+    
 
     $sql = $pdo->prepare('
         SELECT answer.*, user.*
@@ -95,8 +116,7 @@ require 'header.php';
         $sql->execute([$id]);
         $question = $sql->fetch(PDO::FETCH_ASSOC);*/
         }
-    //echo '<button class="back"><a class="modoru-color" href="question.php?id=' . $id . '">＜戻る</a></button>';
-    ?>
+        echo '<button class="back" onclick="location.href=\'question.php?id=' . $id . '\'">＜戻る</button>';
 </div>
 
 

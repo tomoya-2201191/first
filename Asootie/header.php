@@ -50,9 +50,9 @@
        
  
  
-        <form method="get" action="search.php" class="search-form-1">
+        <form method="post" action="search.php" class="search-form-1">
             <label>
-                <input type="text" placeholder="キーワードを入力">
+                <input type="text" name="keyword" placeholder="キーワードを入力">
             </label>
             <button type="submit" aria-label="検索"></button>
         </form>
