@@ -1,0 +1,145 @@
+/* 白いでっかい枠 */
+.waku{
+    background-color: #FFFF;
+    width: 800px;
+    height: 600px;
+    flex-shrink: 0;
+    margin: 0 auto;
+}
+
+/* ユーザー */
+.user{
+    height: 60px;
+}
+
+.u_name{
+    margin-top: -74px;
+    margin-left: 100px;
+    color: #000;   
+    font-family: Inter;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    height: 55px;
+}
+
+.u_master{
+    margin-left: 100px;
+    width: 244px;
+    height: 55px;
+    flex-shrink: 0;
+}
+
+/* プロフィール */
+.profile{
+    border-radius: 40px;
+    border: 2px solid #000;
+    background: rgba(236, 236, 236, 0.62);
+    width: 350px;
+    height: 300px;
+    margin-left: 4%;
+    margin-top: 7%;
+    
+}
+
+.p_gender,.p_status{
+    color: #000;
+    font-family: Inter;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+.p_coin{
+    color: #000;
+    font-family: Inter;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.t_gender{
+    margin-top: 16px;
+    margin-left: 20px;
+}
+
+.t_status{
+    margin-left: 20px;
+}
+
+.t_coin{
+    margin-left: 20px;
+}
+
+.t_coin_img{
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 80px;
+}
+
+/* レコード */
+.record{
+    border-radius: 40px;
+    border: 2px solid #000;
+    background: rgba(236, 236, 236, 0.62);
+    width: 350px;
+    height: 350px;
+    margin-left: 52%;
+    margin-top: -305px;
+}
+
+.r_upload,.r_solution,.r_best,.r_answer,.r_other{
+    color: #000;
+    font-family: Inter;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+.t_upload{
+    margin-top: 16px;
+    margin-left: 20px;
+}
+
+.t_solution,.t_best,.t_answer,.t_other{
+    margin-left: 20px;
+}
+
+/* ボタン */
+.question_answer {
+    width: 172px;
+    height: 58px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: #B5E5FA;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-left: 52%;
+    margin-top: 5%;
+}
+
+.user_up {
+    width: 172px;
+    height: 58px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: #c6e326;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.logout {
+    width: 172px;
+    height: 58px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: #fb4433;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-left: 65%;
+}
