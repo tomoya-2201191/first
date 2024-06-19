@@ -34,10 +34,9 @@ require 'db-connect.php';
     <?php
         $sql = $pdo->query('select * from user');
         foreach($sql as $row){
-            //$row = $sql->fetch(PDO::FETCH_ASSOC);
             echo '<div class="q_user">';
-            echo '<img src="img/icon.png" height="80" width="110">';
-            echo '<div class="q_profile">', $row['name'], '　さん', '<br>';
+            echo '<a href="user-profile.php?user_id=' . $row['user_id'] . '"><img src="img/icon.png" height="80" width="110"></a>';
+            echo '<div class="q_profile"><a href="user-profile.php?user_id=' . $row['user_id'] . '">', $row['name'], '　さん</a><br>';
             if ($row['status_id'] == 0) {
                 echo    '<div class="box1">
                         <div class="status1">STUDENT</div>
@@ -63,3 +62,4 @@ require 'db-connect.php';
 <?php
 require 'footer.php';
 ?>
+
