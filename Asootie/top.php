@@ -1,6 +1,6 @@
 <?php
-session_start();
-require 'db-connect.php';
+
+require 'header.php';
 
 // カテゴリIDの設定
 $category_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -59,7 +59,7 @@ foreach ($sql_params as $key => $value) {
 }
 $sql->execute();
 
-require 'header.php';
+// require 'header.php';
 ?>
 
 <div class="contents">
