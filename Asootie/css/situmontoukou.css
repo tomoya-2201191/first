@@ -1,19 +1,47 @@
-.toukou{
+.toukou {
     width: 172px;
-     height: 58px;
-     flex-shrink: 0;
-     border-radius: 40px;
-     background: #B5E5FA;
-     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    height: 58px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: white; /* 背景を白に設定 */
+    border: 2px solid #4dc7fa; /* 元の背景色を枠線に設定 */
+    color: #4dc7fa; /* 文字色を枠線と同じ色に設定 */
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    text-align: center; /* 文字を中央揃えに */
+    line-height: 58px; /* ボタンの高さと同じにして文字を中央に垂直配置 */
+    font-size: 16px; /* 文字のサイズ */
+    font-weight: bold; /* 文字を太字に */
+    text-transform: uppercase; /* 文字を大文字に */
+    cursor: pointer; /* カーソルをポインタに変更 */
 }
-.cancel{
+
+.toukou:hover {
+    background: #4dc7fa; /* ホバー時の背景色を元の背景色に設定 */
+    color: white; /* ホバー時の文字色を白に設定 */
+}
+
+/* .cancel ボタンのスタイル */
+.cancel {
     width: 172px;
-     height: 58px;
-     flex-shrink: 0;
-     border-radius: 40px;
-     background: #fb4433;
-     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-     margin-left: 300px;
+    height: 58px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: white; /* 背景を白に設定 */
+    border: 2px solid #fb4433; /* 元の背景色を枠線に設定 */
+    color: #fb4433; /* 文字色を枠線と同じ色に設定 */
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-left: 300px;
+    text-align: center; /* 文字を中央揃えに */
+    line-height: 58px; /* ボタンの高さと同じにして文字を中央に垂直配置 */
+    font-size: 16px; /* 文字のサイズ */
+    font-weight: bold; /* 文字を太字に */
+    text-transform: uppercase; /* 文字を大文字に */
+    cursor: pointer; /* カーソルをポインタに変更 */
+}
+
+.cancel:hover {
+    background: #fb4433; /* ホバー時の背景色を元の背景色に設定 */
+    color: white; /* ホバー時の文字色を白に設定 */
 }
 .form-group1{
     display: flex;

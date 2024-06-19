@@ -68,15 +68,21 @@ if (isset($_POST['sankou'])) {
         $sql->execute([$id]);
         $question = $sql->fetch(PDO::FETCH_ASSOC);
 
+
         // 質問が存在するか、かつセッションのユーザーが質問者であることをチェック
-        if ($question && $question['q_user_id'] == $_SESSION['user_id']) {
+        if ($question && $question['q_user_id'] == $_SESSION['user_id'] && $question['flag'] == 0) {
             // 回答のIDは `$row['a_id']` と仮定
-            echo '<button class="ba_btn"><a class="a_color" href="ba-select.php?a_id=' . $row['a_id'] . '">ベストアンサーに選ぶ</a></button>';
+            echo '<form method="post" action="ba-select.php">';
+            echo '<input type="hidden" name="a_user_id" value="',$row['a_user_id'],'">';
+            echo '<input type="hidden" name="q_id" value="',$id,'">';
+            echo '<button type="submit" name="a_id" value="',$row['a_id'],'"class="ba_btn"><a class="a_color" >ベストアンサーに選ぶ</a></button>';
+            echo '</form>';
         }
             echo '<hr>';
         }
     }
-    echo '<button class="back"><a class="modoru-color" href="question.php?id=' . $id . '">＜戻る</a></button>';
+    echo '<button class="back" onclick="location.href=\'question.php?id=' . $id . '\'">＜戻る</button>';
+    
     ?>
 </div>
 

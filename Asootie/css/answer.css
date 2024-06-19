@@ -38,16 +38,41 @@
      height: 58px;
      flex-shrink: 0;
      border-radius: 40px;
-     background: #B5E5FA;
      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-     margin-left: 800px;
+     margin-left: 950px;
+     background: white; /* 背景を白に設定 */
+    border: 2px solid #4dc7fa; 
+    color:#4dc7fa;
+    text-align: center; /* 文字を中央揃えに */
+    line-height: 58px; /* ボタンの高さと同じにして文字を中央に垂直配置 */
+    font-size: 16px; /* 文字のサイズ */
+    font-weight: bold; /* 文字を太字に */
+    text-transform: uppercase; /* 文字を大文字に */
+    cursor: pointer; /* カーソルをポインタに変更 */
+}
+.kaitou:hover{
+    background: #4dc7fa;
+    color: white; /* ホバー時の文字色を白に設定 */ 
 }
 .ba_btn{
     width: 250px;
     height: 60px;
     flex-shrink: 0;
     border-radius: 40px;
-    background: #fb4433;
+    background: white; /* 背景を白に設定 */
+    border: 2px solid #fb4433; /* 外枠を赤色に設定 */
+    color: #fb4433; /* 文字色を赤色に設定 */
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin-left: 230px;
+    text-align: center; /* 文字を中央揃えに */
+    line-height: 60px; /* ボタンの高さと同じにして文字を中央に垂直配置 */
+    font-size: 16px; /* 文字のサイズ */
+    font-weight: bold; /* 文字を太字に */
+    text-transform: uppercase; /* 文字を大文字に */
+    cursor: pointer; /* カーソルをポインタに変更 */
+}
+
+.ba_btn:hover {
+    background: #fb4433; /* ホバー時の背景色を赤に設定 */
+    color: white; /* ホバー時の文字色を白に設定 */
 }

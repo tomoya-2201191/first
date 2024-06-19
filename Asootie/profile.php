@@ -7,9 +7,8 @@ require 'header.php';
 <link rel="stylesheet" href="css/profile.css">
 <div class="waku">
     <?php
-    $pdo= new PDO($connect,USER,PASS);
     $sql = $pdo->prepare('select * from user where user_id=?');
-    $sql->execute([$_GET['user_id']]);
+    $sql->execute([$_SESSION['user_id']]);
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     //ユーザー//
     echo '<div class="user">';
@@ -17,21 +16,22 @@ require 'header.php';
     echo '<div class="u_name">',$row['name'],'　さん','<br>','</div>';
     echo '<div class="u_master">';
 
-    if ($row['best_answer'] < 5) {
-        echo    '<div class="box1">
-                <div class="status1">就活素人</div>
-                </div>';
-    } elseif ($row['best_answer'] < 10) {
-        echo    '<div class="box2">
-                <div class="status2">就活中級者</div>
-                </div>';
-    } elseif ($row['best_answer'] < 20) {
+    if ($row['best_answer'] > 20) {
         echo    '<div class="box3">
                 <div class="status3">就活マスター</div>
                 </div>';
+    } elseif ($row['best_answer'] > 10) {
+        echo    '<div class="box2">
+                <div class="status2">就活中級者</div>
+                </div>';
+    } elseif ($row['best_answer'] > 5) {
+        echo    
+                '<div class="box1">
+                <div class="status1">就活素人</div>
+                </div>';
     } else {
         echo    '<div class="box3">
-                <div class="status3">STUDENT</div>
+                <div class="status3">就活初心者</div>
                 </div>';
     }
     echo '</div>';
@@ -70,9 +70,9 @@ require 'header.php';
     echo '<div class="t_other">','その他の回答数','<br>','</div>';//テキスト//
     echo '<div class="r_other">',$row['other'],'<br>','</div>';
     echo '</div>';
-    $id = $_GET['user_id'];
+    $id = $_SESSION['user_id'];
     //ボタン//
-    echo '<button class="question_answer"><a class="a_color" href="question&answer.php?q&a_id=' . $id . '">質問＆回答一覧＞</a></button>';
+    echo '<button class="question_answer"><a class="a_color" href="question&answer.php?id=' . $id . '">質問＆回答一覧＞</a></button>';
     echo '<button class="user_up"><a class="a_color" href="customer-update-input.php?id=' . $id . '">個人情報更新＞</a></button>';
     ?>
 </div>
