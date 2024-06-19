@@ -18,20 +18,20 @@ require 'header.php';
 
     if ($row['best_answer'] > 20) {
         echo    '<div class="box3">
-                <div class="status3">就活マスター</div>
+                <div class="status3">恐竜XXX</div>
                 </div>';
     } elseif ($row['best_answer'] > 10) {
         echo    '<div class="box2">
-                <div class="status2">就活中級者</div>
+                <div class="status2">恐竜</div>
                 </div>';
     } elseif ($row['best_answer'] > 5) {
         echo    
                 '<div class="box1">
-                <div class="status1">就活素人</div>
+                <div class="status1">ちび恐竜</div>
                 </div>';
     } else {
         echo    '<div class="box3">
-                <div class="status3">就活初心者</div>
+                <div class="status3">卵</div>
                 </div>';
     }
     echo '</div>';

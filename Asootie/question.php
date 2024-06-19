@@ -1,6 +1,4 @@
 <?php
-session_start();
-require 'db-connect.php';
 require 'header.php';
 
 // '共感した'ボタンが押されたときの処理
