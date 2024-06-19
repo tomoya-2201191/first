@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require 'db-connect.php';
 require 'header.php';
 
@@ -19,7 +21,6 @@ if (!$row) {
     echo 'ユーザーが見つかりません！';
     exit;
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -92,3 +93,4 @@ if (!$row) {
 <script src="js/top.js"></script>
 </body>
 </html>
+
