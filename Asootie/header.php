@@ -61,7 +61,7 @@
 
         <div class="icon">
             <a href="#">
-                <img src="img/icon.png">
+                <img src="img/dinosaur1.png">
             </a>
         </div>
 
