@@ -44,7 +44,7 @@ require 'db-connect.php';
             </a>
         </div>
 
-        <form method="post" action="search.php" class="search-form-1">
+        <form method="get" action="search.php" class="search-form-1">
             <label>
                 <input type="text" name="keyword" placeholder="キーワードを入力">
             </label>

@@ -1,6 +1,4 @@
 <?php
-session_start();;
-require 'db-connect.php';
 require 'header.php';
 
 // '参考になる'ボタンが押されたときの処理

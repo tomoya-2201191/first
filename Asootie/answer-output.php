@@ -1,6 +1,4 @@
 <?php
-session_start();;
-require 'db-connect.php';
 require 'header.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -100,7 +98,7 @@ echo '<div class="left">';
             echo '<hr>';
         }
     }
-    echo '<button class="back" onclick="location.href=\'question.php?id=' . $id . '\'">＜戻る</button>';
+    echo '<button class="back" onclick="location.href=\'question.php?id=' . $q_id . '\'">＜戻る</button>';
     ?>
 </div>
 
