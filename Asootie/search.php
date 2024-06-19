@@ -1,9 +1,23 @@
     <?php
-    session_start();
-    require 'db-connect.php';
+    require 'header.php';
+
+    // カテゴリIDの設定
+$category_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
     // フィルターの設定
     $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
+
+    // カテゴリ名の取得
+    $category_name = 'Q&A一覧';
+    if ($category_id > 0) {
+        $stmt = $pdo->prepare('SELECT category_name FROM category WHERE category_id = :category_id');
+        $stmt->bindValue(':category_id', $category_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $category = $stmt->fetch();
+        if ($category) {
+            $category_name = $category['category_name'];
+        }
+    }
 
     // ページ設定
     $items_per_page = 7; // 1ページに表示するアイテム数
@@ -14,11 +28,22 @@
     $sql_where = ' WHERE 1=1 ';
     $sql_params = [];
 
+    if ($category_id > 0) {
+        $sql_where .= ' AND question.category_id = :category_id ';
+        $sql_params[':category_id'] = $category_id;
+    }
 
     if ($filter == 'open') {
         $sql_where .= ' AND flag = 0 ';
     } elseif ($filter == 'closed') {
         $sql_where .= ' AND flag = 1 ';
+    }
+
+    // 検索キーワードの処理
+    if (isset($_POST['keyword']) && !empty($_POST['keyword'])) {
+        $keyword = '%' . $_POST['keyword'] . '%';
+        $sql_where .= ' AND q_text LIKE :keyword ';
+        $sql_params[':keyword'] = $keyword;
     }
 
     $sql_count = 'SELECT COUNT(*) FROM question ' . $sql_where;
@@ -42,7 +67,7 @@
 
 
 
-    require 'header.php';
+    
     ?>
 
 
