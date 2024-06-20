@@ -2,33 +2,36 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Submission Complete</title>
+    <title>投稿完了</title>
     <style>
-        .container {
-            text-align: center;
-            margin-top: 20%;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
-        .button {
-            background-color: #1E90FF;
-            color: white;
-            padding: 10px 20px;
+        .modal {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin-top: 20px;
+        }
+        .modal button {
+            background-color: #007bff;
+            color: white;
             border: none;
+            padding: 10px 20px;
             border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
+        }
+        .modal button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>投稿完了！</h1>
-        <form action="index.php" method="get">
-            <button class="button">トップへ戻る ></button>
-        </form>
-    </div>
-</body>
-</html>
