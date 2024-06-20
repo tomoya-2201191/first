@@ -2,36 +2,30 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>投稿完了</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .modal {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .modal button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .modal button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Example</title>
+    <link rel="stylesheet" type="text/css" href="situmon2.css">
 </head>
 <body>
+
+<?php
+$submissionComplete = true; // Simulating the submission completion
+if ($submissionComplete) {
+    echo '<div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <p>投稿完了！</p>
+                <a href="index.php" class="button">トップへ戻る ></a>
+            </div>
+          </div>';
+}
+?>
+
+<script>
+function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+}
+</script>
+
+</body>
+</html>
