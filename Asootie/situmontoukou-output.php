@@ -78,7 +78,15 @@ require 'header.php';
             $sql->execute([]);
             $row = $sql->fetch(PDO::FETCH_ASSOC);
             echo '<div class="q_user">';
-            echo '<img src="img/icon.png" height="80" width="100">';
+            $icon = "dinosaur1.png";
+            if ($row['best_answer'] > 20) {
+                $icon = "dinosaur4.png";
+            } elseif ($row['best_answer'] > 10) {
+                $icon = "dinosaur3.png";
+            } elseif ($row['best_answer'] > 5) {
+                $icon = "dinosaur2.png";
+            }
+            echo '<img src="img/' . $icon . '" width="90" height="90">';
             echo '<div class="q_profile">', $row['name'], '　さん', '<br>';
             if ($row['status_id'] == 0) {
                 echo    '<div class="box1">
@@ -101,6 +109,7 @@ require 'header.php';
             echo '<div class="q_text">', $row['q_text'], '</div>';
             echo '<div class="coin">';
             echo '<img src="img/coin.png" height="50" width="50">';
+            echo '<br>';
             echo '<div class="coin-text">',$row['question_coin'],"コイン<br></div></div>";
                 ?>
 

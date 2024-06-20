@@ -349,6 +349,7 @@ a{
 
  .q_user {
      display: flex;
+     margin-left: 20px;
  }
 
  .q_profile {
@@ -376,6 +377,27 @@ a{
      flex-shrink: 0;
      background: lightgreen;
  }
+ .p_box1 {
+    width: 190px;
+    height: 32px;
+    /*flex-shrink: 0;*/
+    background: lightcoral;
+  }
+.p_box2{
+   width: 170px;
+   height: 32px;
+   background:#E5D1FF;
+ }
+.p_box3{
+   width: 125px;
+   height: 32px;
+   background: lightgreen;
+ }
+ .p_box4{
+    width: 150px;
+    height: 32px;
+    background: black;
+ }
 
  .status1 {
      position: absolute;
@@ -397,6 +419,12 @@ a{
      font-size: 20px;
      color: #000;
  }
+ .status4{
+    position: absolute;
+     transform: translate(12.5%, 20%);
+     font-size: 20px;
+     color: #FFF;
+ }
 
  .date {
      position: absolute;
@@ -405,7 +433,7 @@ a{
 
  .answer_sum {
      position: absolute;
-     transform: translate(500%, 100%);
+     transform: translate(450%, 100%);
      font-size: 30px;
  }
 
@@ -522,11 +550,6 @@ a{
 .date{
    position: absolute;
    transform: translate(280%, 250%); 
-}
-.answer_sum{
-   position: absolute;
-   transform: translate(500%,100%);
-   font-size: 30px;
 }
 .q_text{
    margin-left: 50px;

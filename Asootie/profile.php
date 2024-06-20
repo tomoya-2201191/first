@@ -10,26 +10,34 @@ require 'header.php';
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     //ユーザー//
     echo '<div class="user">';
-    echo '<img src="img/icon.png" height="80" width="100">';
+    $icon = "dinosaur1.png";
+    if ($row['best_answer'] > 20) {
+        $icon = "dinosaur4.png";
+    } elseif ($row['best_answer'] > 10) {
+        $icon = "dinosaur3.png";
+    } elseif ($row['best_answer'] > 5) {
+        $icon = "dinosaur2.png";
+    }
+    echo '<img src="img/' . $icon . '" width="90" height="90">';
     echo '<div class="u_name">',$row['name'],'　さん','<br>','</div>';
     echo '<div class="u_master">';
 
     if ($row['best_answer'] > 20) {
-        echo    '<div class="box3">
-                <div class="status3">恐竜XXX</div>
+        echo    '<div class="p_box4">
+                <div class="status4">伝説の就活生</div>
                 </div>';
     } elseif ($row['best_answer'] > 10) {
-        echo    '<div class="box2">
-                <div class="status2">恐竜</div>
+        echo    '<div class="p_box2">
+                <div class="status2">一人前就活生</div>
                 </div>';
     } elseif ($row['best_answer'] > 5) {
         echo    
-                '<div class="box1">
-                <div class="status1">ちび恐竜</div>
+                '<div class="p_box1">
+                <div class="status1">駆け出し就活生</div>
                 </div>';
     } else {
-        echo    '<div class="box3">
-                <div class="status3">卵</div>
+        echo    '<div class="p_box3">
+                <div class="status3">就活生の卵</div>
                 </div>';
     }
     echo '</div>';

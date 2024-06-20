@@ -70,7 +70,15 @@ echo '<div class="left">';
         echo '<div class="no-answer"><h3>回答完了！</h3></div><hr>';
         foreach ($results as $row) {
             echo '<div class="a_user">';
-            echo '<img src="img/icon.png" height="80" width="110">';
+            $icon = "dinosaur1.png";
+            if ($row['best_answer'] > 20) {
+                $icon = "dinosaur4.png";
+            } elseif ($row['best_answer'] > 10) {
+                $icon = "dinosaur3.png";
+            } elseif ($row['best_answer'] > 5) {
+                $icon = "dinosaur2.png";
+            }
+            echo '<img src="img/' . $icon . '" width="90" height="90">';
             echo '<div class="q_profile">', $row['name'], ' さん<br>';
             if ($row['status_id'] == 0) {
                 echo '<div class="box1">
