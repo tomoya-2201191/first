@@ -460,7 +460,7 @@ bottom: 7px;
 
  .answer_sum {
      position: absolute;
-     transform: translate(450px, 100%);
+     transform: translate(450%, 100%);
      font-size: 30px;
  }
 
