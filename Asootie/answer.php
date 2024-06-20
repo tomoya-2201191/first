@@ -1,6 +1,4 @@
 <?php
-session_start();;
-require 'db-connect.php';
 require 'header.php';
 
 ?>
@@ -15,10 +13,19 @@ require 'header.php';
     FROM question
     INNER JOIN user ON question.q_user_id = user.user_id 
     WHERE question.q_id = ?');
-    $sql->execute([$_GET['q_id']]);
+    $_SESSION['q_id'] = $_GET['q_id'];
+    $sql->execute([$_SESSION['q_id']]);
     $row = $sql->fetch(PDO::FETCH_ASSOC);
     echo '<div class="q_user1">';
-    echo '<img src="img/icon.png" height="80" width="100">';
+    $icon = "dinosaur1.png";
+    if ($row['best_answer'] > 20) {
+        $icon = "dinosaur4.png";
+    } elseif ($row['best_answer'] > 10) {
+        $icon = "dinosaur3.png";
+    } elseif ($row['best_answer'] > 5) {
+        $icon = "dinosaur2.png";
+    }
+    echo '<img src="img/' . $icon . '" width="90" height="90">';
     echo '<div class="q_profile">', $row['name'], '　さん', '<br>';
     if ($row['status_id'] == 0) {
         echo    '<div class="box1">
@@ -42,38 +49,48 @@ require 'header.php';
 </div>
 
 <div class="bottom">
-    <?php
-    $pdo = new PDO($connect, USER, PASS);
-    $sql = $pdo->prepare('SELECT user.*
-    FROM user
-    WHERE user.user_id = ?');
-    $sql->execute([$_SESSION['user_id']]);
-    $row = $sql->fetch(PDO::FETCH_ASSOC);
-    echo '<div class="q_user1">';
-    echo '<img src="img/icon.png" height="80" width="100">';
-    echo '<div class="q_profile">', $row['name'], '　さんとして回答中', '<br>';
-    if ($row['status_id'] == 0) {
-        echo    '<div class="box1">
-                <div class="status1">STUDENT</div>
-                </div>';
-    } else if ($row['status_id'] == 1) {
-        echo    '<div class="box2">
-                <div class="status2">TEACHER</div>
-                </div>';
-    } else {
-        echo    '<div class="box3">
-                <div class="status3">GRADUATE</div>
-                </div>';
-    }
-    echo '</div></div>'; // q_profile の終了タグを追加
-    ?>
-    <hr>
-    <div class="form-group1">
-        <textarea id="question" name="question" rows="15" class="t-area" 
-        placeholder="回答を入力してください" required></textarea>
-    </div>
-    <hr>
-    <button type="submit" class="kaitou">回答する＞</button>
+    <form method="post" action="answer-output.php">
+        <?php
+        $pdo = new PDO($connect, USER, PASS);
+        $sql = $pdo->prepare('SELECT user.*
+        FROM user
+        WHERE user.user_id = ?');
+        $sql->execute([$_SESSION['user_id']]);
+        $row = $sql->fetch(PDO::FETCH_ASSOC);
+        echo '<div class="q_user1">';
+        $icon = "dinosaur1.png";
+        if ($row['best_answer'] > 20) {
+            $icon = "dinosaur4.png";
+        } elseif ($row['best_answer'] > 10) {
+            $icon = "dinosaur3.png";
+        } elseif ($row['best_answer'] > 5) {
+            $icon = "dinosaur2.png";
+        }
+        echo '<img src="img/' . $icon . '" width="90" height="90">';
+        echo '<div class="q_profile">', $row['name'], '　さんとして回答中', '<br>';
+        if ($row['status_id'] == 0) {
+            echo    '<div class="box1">
+                    <div class="status1">STUDENT</div>
+                    </div>';
+        } else if ($row['status_id'] == 1) {
+            echo    '<div class="box2">
+                    <div class="status2">TEACHER</div>
+                    </div>';
+        } else {
+            echo    '<div class="box3">
+                    <div class="status3">GRADUATE</div>
+                    </div>';
+        }
+        echo '</div></div>'; // q_profile の終了タグを追加
+        ?>
+        <hr>
+        <div class="form-group1">
+            <textarea id="answer" name="answer" rows="15" class="t-area" 
+            placeholder="回答を入力してください" required></textarea>
+        </div>
+        <hr>
+        <button type="submit" class="kaitou">回答する</button>
+    </form>
 </div>
 
 <?php

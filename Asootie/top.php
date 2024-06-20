@@ -1,13 +1,11 @@
 <?php
-session_start();
-require 'db-connect.php';
 require 'header.php';
 
 // カテゴリIDの設定
 $category_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // フィルターの設定
-$filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
+$filter = isset($_GET['filter']) ? $_GET['filter'] : 'open';  // デフォルトは 'open'
 
 // カテゴリ名の取得
 $category_name = 'Q&A一覧';
@@ -59,6 +57,8 @@ foreach ($sql_params as $key => $value) {
     $sql->bindValue($key, $value);
 }
 $sql->execute();
+
+// require 'header.php';
 ?>
 
 <div class="contents">
@@ -66,21 +66,20 @@ $sql->execute();
 </div>
 
 <div class="flex">
-
     <div class="left">
         <div class="left-1">
             <div class="left-1-1">
-                <a href="?filter=open&id=<?php echo $category_id; ?>">
+                <a href="?filter=open&id=<?php echo $category_id; ?>" class="<?php echo $filter == 'open' ? 'selected' : ''; ?>">
                     <h3>回答受付中</h3>
                 </a>
             </div>
             <div class="left-1-2">
-                <a href="?filter=closed&id=<?php echo $category_id; ?>">
+                <a href="?filter=closed&id=<?php echo $category_id; ?>" class="<?php echo $filter == 'closed' ? 'selected' : ''; ?>">
                     <h3>解決済み</h3>
                 </a>
             </div>
-            <div class="left-1-2">
-                <a href="?filter=all&id=<?php echo $category_id; ?>">
+            <div class="left-1-3">
+                <a href="?filter=all&id=<?php echo $category_id; ?>" class="<?php echo $filter == 'all' ? 'selected' : ''; ?>">
                     <h3>すべて</h3>
                 </a>
             </div>
@@ -95,17 +94,21 @@ $sql->execute();
             $text = $row['q_text'];
             $answer = $row['answer_sum'];
             $date = $row['q_date'];
+            $flag = $row['flag']; // 0: open, 1: closed
 
             // 文字数を制限して語尾に[...]を追加
             if (mb_strlen($text) > 38) {
                 $text = mb_substr($text, 0, 38) . '...';
             }
+
+            // ステータスクラスの設定
+            $status_class = $flag == 0 ? 'status-open' : 'status-closed';
+
             echo '<div class="top-category">', htmlspecialchars($category), '</div>';
             echo '<a class="top-text" href="question.php?id=', $id, '">', htmlspecialchars($text), '</a>';
 
             echo '<div class="flex">';
-
-            echo '<div class="top-answer-date">';
+            echo '<div class="top-answer-date ', $status_class, '">';
             echo  '💬', htmlspecialchars($answer), "　";
             echo  htmlspecialchars($date);
             echo '</div>';
@@ -124,13 +127,10 @@ $sql->execute();
         }
         echo '</div>';
         ?>
-
     </div>
 
     <div class="right">
-
         <?php
-
         echo '<div class="category">';
         $sql = $pdo->query('SELECT * FROM category');
         echo '<br>', '　カテゴリ一覧';
@@ -144,9 +144,7 @@ $sql->execute();
         echo "</ul>";
         echo '<hr>';
         ?>
-
     </div>
-</div>
 </div>
 
 <?php
