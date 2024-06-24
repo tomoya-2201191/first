@@ -79,19 +79,19 @@ require 'header.php';
                 <div class="left">
                     <div class="left-1">
                         <div class="left-1-1">
-                            <a href="?filter=open&id=<?php echo $category_id; ?>&keyword=<?php echo urlencode($_GET['keyword']); ?>"
+                            <a href="?filter=open&id=<?php echo $category_id; ?>&keyword=<?php echo $_GET['keyword']; ?>"
                             class="<?php echo $filter == 'open' ? 'selected' : ''; ?>">
                                 <h3>回答受付中</h3>
                             </a>
                         </div>
                         <div class="left-1-2">
-                            <a href="?filter=closed&id=<?php echo $category_id; ?>&keyword=<?php echo urlencode($_GET['keyword']); ?>"
+                            <a href="?filter=closed&id=<?php echo $category_id; ?>&keyword=<?php echo $_GET['keyword']; ?>"
                             class="<?php echo $filter == 'closed' ? 'selected' : ''; ?>">
                                 <h3>解決済み</h3>
                             </a>
                         </div>
                         <div class="left-1-3">
-                            <a href="?filter=all&id=<?php echo $category_id; ?>&keyword=<?php echo urlencode($_GET['keyword']); ?>"
+                            <a href="?filter=all&id=<?php echo $category_id; ?>&keyword=<?php echo $_GET['keyword']; ?>"
                             class="<?php echo $filter == 'all' ? 'selected' : ''; ?>">
                                 <h3>すべて</h3>
                             </a>
@@ -156,7 +156,7 @@ require 'header.php';
                     echo '<ul>';
                     foreach ($sql as $row) {
                         $id = $row['category_id'];
-                        echo '<li><a class="category-black" href="?id=', $id, '">', htmlspecialchars($row['category_name']), "</a></li>";
+                        echo '<li><a class="category-black" href="?id=', $id, '&keyword=',$_GET['keyword'],'">', htmlspecialchars($row['category_name']), "</a></li>";
                         echo '<br>';
                     }
                     echo "</ul>";

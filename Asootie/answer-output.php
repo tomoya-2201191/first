@@ -120,7 +120,7 @@ echo '<div class="left">';
     echo '<ul>';
     foreach ($sql as $row) {
         $id=$row['category_id'];
-        echo '<li><a class="category-black" href="?id=', $id, '">', $row['category_name'], "</a></li>";
+        echo '<li><a class="category-black" href="top.php?id=', $id, '">', $row['category_name'], "</a></li>";
         echo '<br>';
     }
     echo "</ul>";
