@@ -374,6 +374,55 @@ bottom: 7px;
 	opacity: 1;
 }
 
+
+.ranking{
+    background-color: #ffffff;
+    border: #333333 0.5px solid;
+    height: 445px;
+    width: 350px;
+    margin-left: 20px;
+   margin-top: 30px;
+}
+.ranking-p{
+    font-size: 20px;
+    font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+    margin-left: 20px;
+}
+.ranking-ol{
+    padding-left:0;
+    position: relative;
+}
+.ranking-li{
+    list-style:none;
+    position: relative;
+    bottom: 8px;
+    left: 8px;
+    padding-top: 20px;
+}
+.rank-number{
+    font-size: 20px;
+}
+.ranking-hr{
+    width: 95%;
+    position: relative;
+    right: 10px;
+}
+.ranking-a{
+   color: #2c2c2c;
+}
+.ranking-a:hover{
+    text-decoration: none;
+    color: rgb(236, 0, 0);
+}
+
+.right-ranking{
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+}
+
+
+
  .q_user {
      display: flex;
      margin-left: 20px;

@@ -47,6 +47,8 @@ if ($filter == 'open') {
 $sql_order = ' ORDER BY q_date DESC ';
 if ($sort == 'old') {
     $sql_order = ' ORDER BY q_date ASC ';
+} elseif ($sort == 'feel') {
+    $sql_order = ' ORDER BY feel DESC ';
 }
 
 $sql_count = 'SELECT COUNT(*) FROM question ' . $sql_where;
@@ -68,7 +70,6 @@ foreach ($sql_params as $key => $value) {
 }
 $sql->execute();
 
-// require 'header.php';
 ?>
 
 <div class="contents">
@@ -104,11 +105,9 @@ $sql->execute();
                     <select name="sort" onchange="this.form.submit()">
                         <option value="new" <?php echo !isset($sort) || $sort == 'new' ? 'selected' : ''; ?>>日付が新しい順</option>
                         <option value="old" <?php echo isset($sort) && $sort == 'old' ? 'selected' : ''; ?>>日付が古い順</option>
+                        <option value="feel" <?php echo isset($sort) && $sort == 'feel' ? 'selected' : ''; ?>>ランキング順</option>
                     </select>
                 </div>
-
-
-
             </form>
             <ul>
                 <?php
@@ -161,15 +160,16 @@ $sql->execute();
         </div>
     </div>
 
-    <div class="right">
+
+    <div class="right-ranking">
+        <div class="right">
             <?php
             $sql = $pdo->query('SELECT * FROM category');
-           echo '<div class="category">'; 
-
+            echo '<div class="category">';
             echo '<br>', '　カテゴリ一覧';
             echo '</div>';
             echo '<hr>';
-            
+
             echo '<ul class="category_box">';
             foreach ($sql as $row) {
                 $id = $row['category_id'];
@@ -180,8 +180,34 @@ $sql->execute();
 
             echo '<hr>';
             ?>
-        
+        </div>
+
+        <div class="ranking">
+
+            <p class="ranking-p">共感RANKING</p>
+            <ol class="ranking-ol">
+
+                <hr>
+                <?php
+                // ランキング用のクエリを作成する
+                $ranking_query = 'SELECT * FROM question JOIN category ON question.category_id = category.category_id WHERE flag = 0 ORDER BY feel DESC LIMIT 5'; // 例: 上位5件のランキング
+                $ranking_stmt = $pdo->query($ranking_query);
+                $rank = 1;
+                foreach ($ranking_stmt as $row) {
+                    echo '<li class="ranking-li">';
+                    echo '<span class="rank-number">', $rank, '.</span>';
+                    echo '<span class="rank-question"><a class="ranking-a" href="question.php?id=', $row['q_id'], '">', htmlspecialchars($row['q_text']), '</a></span>';
+                    echo '<hr class="ranking-hr">';
+
+                    echo '</li>';
+                    $rank++;
+                }
+                ?>
+            </ol>
+        </div>
     </div>
+
+
 </div>
 
 <?php
