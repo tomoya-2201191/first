@@ -87,7 +87,7 @@ if (isset($_POST['kyokan'])) {
     </div>
 
 
-<!-- </div>
+    <!-- </div>
 
     <div class="right">
         <?php
@@ -106,27 +106,28 @@ if (isset($_POST['kyokan'])) {
         ?>
     </div> -->
 
-<div class="right">
-    <?php
-    $sql = $pdo->query('SELECT * FROM category');
-    echo '<div class="category">';
+    <div class="right">
+        <?php
+        $sql = $pdo->query('SELECT * FROM category');
+        echo '<div class="category">';
 
-    echo '<br>', '　カテゴリ一覧';
-    echo '</div>';
-    echo '<hr>';
+        echo '<br>', '　カテゴリ一覧';
+        echo '</div>';
+        echo '<hr>';
 
-    echo '<ul class="category_box">';
-    foreach ($sql as $row) {
-        $id = $row['category_id'];
-        echo '<li><a class="category-black" href="top.php?id=', $id, '">', $row['category_name'], "</a></li>";
-        echo '<br>';
-    }
-    echo "</ul>";
+        echo '<ul class="category_box">';
+        foreach ($sql as $row) {
+            $id = $row['category_id'];
+            echo '<li><a class="category-black" href="top.php?id=', $id, '">', $row['category_name'], "</a></li>";
+            echo '<br>';
+        }
+        echo "</ul>";
 
-    echo '<hr>';
-    ?>
+        echo '<hr>';
+        ?>
 
-</div>
+    </div>
+    
 </div>
 
 </div>
