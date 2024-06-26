@@ -47,48 +47,48 @@ if (isset($_POST['kyokan'])) {
             echo    '<div class="box3">
                 <div class="status3">GRADUATE</div>
                 </div>';
-    }
-    echo '</div>'; // q_profile の終了タグを追加
-    $sql = $pdo->prepare('select * from question where q_id=?');
-    $sql->execute([$_GET['id']]);
-    $row = $sql->fetch(PDO::FETCH_ASSOC);
-    echo '<div class="date">', $row['q_date'], '</div>';
-    echo '<div class="answer_sum">', $row['answer_sum'], '　回答', '</div>';
-    echo '</div>'; // q_user の終了タグを修正
-    $id = $_GET['id'];
-    echo '<div class="q_text">', nl2br(htmlspecialchars($row['q_text'])), '</div>';
-    echo '<form method="post" action="">';
-    echo '<input type="hidden" name="q_id" value="', $id, '">';
-    echo '<button type="submit" name="kyokan" class="kyokan">共感した ', $row['feel'], '</button></form>';
-    echo '<div class="coin">';
-    if($row['category_id'] == 1){
-        echo '　　業界・職種について　';
-    }else if($row['category_id'] == 2){
-        echo '　　自己分析について　';
-    }else if($row['category_id'] == 3){
-        echo '　　インターンシップについて　';
-    }else if($row['category_id'] == 4){
-        echo '　　面接対策について　';
-    }else{
-        echo '　　その他　';
-    }
-    echo '<img src="img/coin.png" height="40" width="40">';
-    echo '<div class="coin-text">',$row['coin'],"コイン<br>";
-    echo '</div></div>';
-    echo '<hr><br>';
-    echo '<button class="check_answer" onclick="location.href=\'view-answer.php?q_id=' . $id . '\'">回答を見る</button>';
-    if($row['flag'] == 0){
-        echo '<button class="q_answer" onclick="location.href=\'answer.php?q_id=' . $id . '\'">回答をする</button>';
-    }else{
-        echo '<button class="q_answer">解決済み！</a></button>';
-    }
-    
-    ?>
-</div>
+        }
+        echo '</div>'; // q_profile の終了タグを追加
+        $sql = $pdo->prepare('select * from question where q_id=?');
+        $sql->execute([$_GET['id']]);
+        $row = $sql->fetch(PDO::FETCH_ASSOC);
+        echo '<div class="date">', $row['q_date'], '</div>';
+        echo '<div class="answer_sum">', $row['answer_sum'], '　回答', '</div>';
+        echo '</div>'; // q_user の終了タグを修正
+        $id = $_GET['id'];
+        echo '<div class="q_text">', nl2br(htmlspecialchars($row['q_text'])), '</div>';
+        echo '<form method="post" action="">';
+        echo '<input type="hidden" name="q_id" value="', $id, '">';
+        echo '<button type="submit" name="kyokan" class="kyokan">共感した ', $row['feel'], '</button></form>';
+        echo '<div class="coin">';
+        if ($row['category_id'] == 1) {
+            echo '　　業界・職種について　';
+        } else if ($row['category_id'] == 2) {
+            echo '　　自己分析について　';
+        } else if ($row['category_id'] == 3) {
+            echo '　　インターンシップについて　';
+        } else if ($row['category_id'] == 4) {
+            echo '　　面接対策について　';
+        } else {
+            echo '　　その他　';
+        }
+        echo '<img src="img/coin.png" height="40" width="40">';
+        echo '<div class="coin-text">', $row['coin'], "コイン<br>";
+        echo '</div></div>';
+        echo '<hr><br>';
+        echo '<button class="check_answer" onclick="location.href=\'view-answer.php?q_id=' . $id . '\'">回答を見る</button>';
+        if ($row['flag'] == 0) {
+            echo '<button class="q_answer" onclick="location.href=\'answer.php?q_id=' . $id . '\'">回答をする</button>';
+        } else {
+            echo '<button class="q_answer">解決済み！</a></button>';
+        }
 
         ?>
     </div>
-<!-- 
+
+
+<!-- </div>
+
     <div class="right">
         <?php
         echo '<div class="category">';
@@ -106,27 +106,27 @@ if (isset($_POST['kyokan'])) {
         ?>
     </div> -->
 
-    <div class="right">
-            <?php
-            $sql = $pdo->query('SELECT * FROM category');
-           echo '<div class="category">'; 
+<div class="right">
+    <?php
+    $sql = $pdo->query('SELECT * FROM category');
+    echo '<div class="category">';
 
-            echo '<br>', '　カテゴリ一覧';
-            echo '</div>';
-            echo '<hr>';
-            
-            echo '<ul class="category_box">';
-            foreach ($sql as $row) {
-                $id = $row['category_id'];
-                echo '<li><a class="category-black" href="top.php?id=', $id, '">', $row['category_name'], "</a></li>";
-                echo '<br>';
-            }
-            echo "</ul>";
+    echo '<br>', '　カテゴリ一覧';
+    echo '</div>';
+    echo '<hr>';
 
-            echo '<hr>';
-            ?>
-        
-    </div>
+    echo '<ul class="category_box">';
+    foreach ($sql as $row) {
+        $id = $row['category_id'];
+        echo '<li><a class="category-black" href="top.php?id=', $id, '">', $row['category_name'], "</a></li>";
+        echo '<br>';
+    }
+    echo "</ul>";
+
+    echo '<hr>';
+    ?>
+
+</div>
 </div>
 
 </div>
