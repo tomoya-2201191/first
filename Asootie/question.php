@@ -77,11 +77,14 @@ if (isset($_POST['kyokan'])) {
         echo '</div></div>';
         echo '<hr><br>';
         echo '<button class="check_answer" onclick="location.href=\'view-answer.php?q_id=' . $id . '\'">回答を見る</button>';
-        if ($row['flag'] == 0) {
+        if ($row['flag'] == 1) {
+            echo '<button class="q_answer">解決済み！</button>';
+        }else if($_SESSION['user_id'] == $row['q_user_id']){
+            
+        }else{
             echo '<button class="q_answer" onclick="location.href=\'answer.php?q_id=' . $id . '\'">回答をする</button>';
-        } else {
-            echo '<button class="q_answer">解決済み！</a></button>';
         }
+        
 
         ?>
     </div>
