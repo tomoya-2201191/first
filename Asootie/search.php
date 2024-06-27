@@ -1,112 +1,192 @@
-<!DOCTYPE html>
-<html lang="ja">
+<?php
+require 'header.php';
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>検索結果</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+// カテゴリIDの設定
+$category_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-<body>
-    <header>
-        <div class="logo">
-            <a href="top.php"><img src="img/asootie.png" alt="ロゴ"></a>
-        </div>
-        <div class="search_box">
-            <form method="get" action="search.php" class="search">
-                <div class="searchForm">
-                    <input type="text" name="search_query" class="searchForm-input" placeholder="Q&Aを探す" value="<?php echo htmlspecialchars($_GET['search_query'] ?? '', ENT_QUOTES); ?>">
-                    <button type="submit" class="searchForm-submit">検索</button>
-                </div>
-            </form>
-        </div>
-        <div class="icon">
-            <img src="img/icon.png" alt="アイコン">
-        </div>
-    </header>
+// フィルターの設定
+$filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
 
-    <div class="contents">
-        <p>検索結果一覧</p>
+// カテゴリ名の取得
+$category_name = 'Q&A一覧';
+if ($category_id > 0) {
+    $stmt = $pdo->prepare('SELECT category_name FROM category WHERE category_id = :category_id');
+    $stmt->bindValue(':category_id', $category_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $category = $stmt->fetch();
+    if ($category) {
+        $category_name = $category['category_name'];
+    }
+}
+
+// ページ設定
+$items_per_page = 7; // 1ページに表示するアイテム数
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // 現在のページ番号
+$offset = ($page - 1) * $items_per_page; // SQLクエリのオフセット
+
+// データベースクエリの設定
+$sql_where = ' WHERE 1=1 ';
+$sql_params = [];
+
+if ($category_id > 0) {
+    $sql_where .= ' AND question.category_id = :category_id ';
+    $sql_params[':category_id'] = $category_id;
+}
+
+if ($filter == 'open') {
+    $sql_where .= ' AND flag = 0 ';
+} elseif ($filter == 'closed') {
+    $sql_where .= ' AND flag = 1 ';
+}
+
+// 検索キーワードの処理
+if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
+    $keyword = '%' . $_GET['keyword'] . '%';
+    $sql_where .= ' AND q_text LIKE :keyword ';
+    $sql_params[':keyword'] = $keyword;
+}
+
+
+$sql_count = 'SELECT COUNT(*) FROM question ' . $sql_where;
+$total_items_stmt = $pdo->prepare($sql_count);
+$total_items_stmt->execute($sql_params);
+$total_items = $total_items_stmt->fetchColumn();
+
+$sql_query = 'SELECT * FROM question JOIN category ON question.category_id = category.category_id ' . $sql_where . ' LIMIT :limit OFFSET :offset';
+$sql = $pdo->prepare($sql_query);
+
+// 総ページ数を計算
+$total_pages = ceil($total_items / $items_per_page);
+
+// SQLクエリのプレースホルダーに値をバインド
+$sql->bindValue(':limit', $items_per_page, PDO::PARAM_INT);
+$sql->bindValue(':offset', $offset, PDO::PARAM_INT);
+foreach ($sql_params as $key => $value) {
+    $sql->bindValue($key, $value);
+}
+$sql->execute();
+
+
+?>
+
+
+
+<div class="contents">
+    <p>検索結果一覧</p>
+</div>
+
+<div class="flex">
+    <div class="left">
+        <div class="left-1">
+            <div class="left-1-1">
+                <a href="?filter=open&id=<?php echo $category_id; ?>&keyword=<?php echo $_GET['keyword']; ?>" class="<?php echo $filter == 'open' ? 'selected' : ''; ?>">
+                    <h3>回答受付中</h3>
+                </a>
+            </div>
+            <div class="left-1-2">
+                <a href="?filter=closed&id=<?php echo $category_id; ?>&keyword=<?php echo $_GET['keyword']; ?>" class="<?php echo $filter == 'closed' ? 'selected' : ''; ?>">
+                    <h3>解決済み</h3>
+                </a>
+            </div>
+            <div class="left-1-3">
+                <a href="?filter=all&id=<?php echo $category_id; ?>&keyword=<?php echo $_GET['keyword']; ?>" class="<?php echo $filter == 'all' ? 'selected' : ''; ?>">
+                    <h3>すべて</h3>
+                </a>
+            </div>
+        </div>
+
+        <?php
+        echo '<div class="top-question">';
+        echo '<ul>';
+        foreach ($sql as $row) {
+            $category = $row['category_name'];
+            $id = $row['q_id'];
+            $text = $row['q_text'];
+            $answer = $row['answer_sum'];
+            $date = $row['q_date'];
+            $flag = $row['flag']; // 0: open, 1: closed
+
+            // 文字数を制限して語尾に[...]を追加
+            if (mb_strlen($text) > 38) {
+                $text = mb_substr($text, 0, 38) . '...';
+            }
+
+            // ステータスクラスの設定
+            $status_class = $flag == 0 ? 'status-open' : 'status-closed';
+
+            echo '<div class="top-category">', htmlspecialchars($category), '</div>';
+            echo '<a class="top-text" href="question.php?id=', $id, '">', htmlspecialchars($text), '</a>';
+
+            echo '<div class="flex">';
+            echo '<div class="top-answer-date ', $status_class, '">';
+            echo  '💬', htmlspecialchars($answer), "　";
+            echo  htmlspecialchars($date);
+            if ($status_class == 'status-open') {
+                echo '　回答受付中！';
+            } else {
+                echo '　解決済み！';
+            }
+            echo '</div>';
+            echo '</div>';
+
+            echo "<hr>";
+            echo '<br>';
+        }
+        echo "</ul>";
+        echo "</div>";
+
+        // ページャーの表示
+        echo '<div class="pager">';
+        for ($i = 1; $i <= $total_pages; $i++) {
+            echo '<a href="?filter=', $filter, '&page=', $i, '&id=', $category_id, '">', $i, '</a> ';
+        }
+        echo '</div>';
+        ?>
     </div>
 
-    <div class="flex">
-        <div class="left">
-            <div class="top-question">
-                <ul>
+    <!-- <div class="right">
                     <?php
-                    session_start();
-                    require 'db-connect.php';
-
-                    // Get search query
-                    $search_query = isset($_GET['search_query']) ? $_GET['search_query'] : '';
-
-                    // Pagination settings
-                    $items_per_page = 7;
-                    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-                    $offset = ($page - 1) * $items_per_page;
-
-                    // Prepare SQL query
-                    $sql = $pdo->prepare("SELECT * FROM question JOIN category ON question.category_id = category.category_id WHERE q_text LIKE :search_query LIMIT :limit OFFSET :offset");
-                    $sql->bindValue(':search_query', '%' . $search_query . '%', PDO::PARAM_STR);
-                    $sql->bindValue(':limit', $items_per_page, PDO::PARAM_INT);
-                    $sql->bindValue(':offset', $offset, PDO::PARAM_INT);
-                    $sql->execute();
-
-                    // Fetch total items for pagination
-                    $sql_count = $pdo->prepare("SELECT COUNT(*) FROM question WHERE q_text LIKE :search_query");
-                    $sql_count->bindValue(':search_query', '%' . $search_query . '%', PDO::PARAM_STR);
-                    $sql_count->execute();
-                    $total_items = $sql_count->fetchColumn();
-                    $total_pages = ceil($total_items / $items_per_page);
-
-                    // Display search results
+                    echo '<div class="category">';
+                    $sql = $pdo->query('SELECT * FROM category');
+                    echo '<br>', '　カテゴリ一覧';
+                    echo '<hr>';
+                    echo '<ul>';
                     foreach ($sql as $row) {
-                        $category = $row['category_name'];
-                        $id = $row['q_id'];
-                        $text = $row['q_text'];
-                        $answer = $row['answer_sum'];
-                        $date = $row['q_date'];
-
-                        // Limit text length
-                        if (mb_strlen($text) > 38) {
-                            $text = mb_substr($text, 0, 38) . '...';
-                        }
-                        echo "<div class='top-category'>{$category}</div>";
-                        echo "<a class='top-text' href='question.php?id={$id}'>{$text}</a>";
-                        echo "<div class='flex'>";
-                        echo "<div class='top-answer-date'>💬 {$answer}　{$date}</div>";
-                        echo "</div><hr><br>";
+                        $id = $row['category_id'];
+                        echo '<li><a class="category-black" href="?id=', $id, '&keyword=', $_GET['keyword'], '">', htmlspecialchars($row['category_name']), "</a></li>";
+                        echo '<br>';
                     }
+                    echo "</ul>";
+                    echo '<hr>';
                     ?>
-                </ul>
-            </div>
+                </div> -->
 
-            <!-- Pagination -->
-            <div class="pager">
-                <?php
-                for ($i = 1; $i <= $total_pages; $i++) {
-                    echo "<a href='?search_query=" . urlencode($search_query) . "&page={$i}'>{$i}</a> ";
-                }
-                ?>
-            </div>
-        </div>
+    <div class="right">
+        <?php
+        $sql = $pdo->query('SELECT * FROM category');
+        echo '<div class="category">';
 
-        <div class="right">
-            <div class="category">
-                <?php
-                $sql = $pdo->query("SELECT * FROM category");
-                echo '<br>カテゴリ一覧<hr><ul>';
-                foreach ($sql as $row) {
-                    $id = $row['category_id'];
-                    echo "<li><a class='category-black' href='?id={$id}'>{$row['category_name']}</a></li><br>";
-                }
-                echo '</ul><hr>';
-                ?>
-            </div>
-        </div>
+        echo '<br>', '　カテゴリ一覧';
+        echo '</div>';
+        echo '<hr>';
+
+        echo '<ul class="category_box">';
+        foreach ($sql as $row) {
+            $id = $row['category_id'];
+            echo '<li><a class="category-black" href="top.php?id=', $id, '">', $row['category_name'], "</a></li>";
+            echo '<br>';
+        }
+        echo "</ul>";
+
+        echo '<hr>';
+        ?>
+
     </div>
-</body>
 
-</html>
+</div>
+</div>
+
+<?php
+require 'footer.php';
+?>
+</div><!--wrapper -->
