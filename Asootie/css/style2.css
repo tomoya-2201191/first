@@ -180,7 +180,8 @@ a{
      width: 700px;
      margin-top: 50px;
      margin-left: auto;
-     margin-bottom: 20px;
+     /* margin-bottom: 20px; */
+     margin-bottom: auto;
  }
 
  .left-1 {
@@ -295,9 +296,33 @@ a{
  }
 
 
+ .top-text{
+    text-decoration: none;
+    color: #333333;
+    position: relative;
+    display: inline-block;
+    transition: .3s;
+ }
+
+.top-text::after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    content: '';
+    width: 0;
+    height: 1px;
+    background-color: #686868;
+    transition: .3s;
+    transform: translateX(-50%);
+  }
+  
+.top-text:hover::after{
+    width: 100%;
+  }
 
 
- .top-text {
+
+ /* .top-text {
 	position: relative;
 	display: inline-block;
 	transition: .3s;
@@ -320,7 +345,9 @@ a{
 .top-text:hover::after {
 	bottom: 0;
 	opacity: 1;
-}
+} */
+
+
 
 
  .top-answer-date {
@@ -350,7 +377,7 @@ bottom: 7px;
     position: relative;
     top: 10px;
  }
- .category-black{
+ /* .category-black{
     text-decoration: none;
     color: rgb(56, 56, 56);
     position: relative;
@@ -372,12 +399,37 @@ bottom: 7px;
  .category-black:hover::after {
 	bottom: 0;
 	opacity: 1;
-}
+} */
+
+.category-black{
+    text-decoration: none;
+    color: rgb(56, 56, 56);
+    position: relative;
+    display: inline-block;
+    transition: .3s;
+ }
+
+.category-black::after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    content: '';
+    width: 0;
+    height: 2px;
+    background-color: #424242;
+    transition: .3s;
+    transform: translateX(-50%);
+  }
+  
+.category-black:hover::after{
+    width: 100%;
+  }
+
 
 
 .ranking{
     background-color: #ffffff;
-    border: #333333 0.5px solid;
+    border: #000000 0.5px solid;
     height: 445px;
     width: 350px;
     margin-left: 20px;
@@ -396,11 +448,11 @@ bottom: 7px;
     list-style:none;
     position: relative;
     bottom: 8px;
-    left: 8px;
+    left: 6px;
     padding-top: 20px;
 }
 .rank-number{
-    font-size: 20px;
+    font-size: 18px;
 }
 .ranking-hr{
     width: 95%;
@@ -408,11 +460,15 @@ bottom: 7px;
     right: 10px;
 }
 .ranking-a{
-   color: #2c2c2c;
+   /* color: #2c2c2c; */
+   background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(249, 50, 50, 0.93) 50%);
+   background-position: 0 0;
+   background-size: 200% auto;
+   transition: .3s;
 }
 .ranking-a:hover{
-    text-decoration: none;
-    color: rgb(236, 0, 0);
+    background-position: -100% 0;
+  color: #ffffff;
 }
 
 .right-ranking{
@@ -711,14 +767,14 @@ bottom: 7px;
  }
 
  .pager a:hover {
-     background-color: #c5f3ff;
-     border: 1px solid #494949;
+     background-color: #c5f3ffcf;
+     border: 1px solid #292929;
 
  }
 
  .pager a.current-page {
-     background-color: #dfdfdf;
-     border: 1px solid #494949;
+     background-color: #dfdfdfc6;
+     border: 1px solid #505050;
  }
  .sankou{
     width: 120px;
