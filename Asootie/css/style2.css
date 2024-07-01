@@ -594,7 +594,7 @@ bottom: 7px;
     color: #4dc7fa;
 }
  .check_answer {
-    width: 172px;
+    width: 190px;
     height: 58px;
     flex-shrink: 0;
     border-radius: 40px;
@@ -602,7 +602,7 @@ bottom: 7px;
     border: 2px solid #4dc7fa; 
     color:#4dc7fa;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    margin-left: 300px;
+    margin-left: 260px;
     text-align: center; /* 文字を中央揃えに */
     line-height: 58px; /* ボタンの高さと同じにして文字を中央に垂直配置 */
     font-size: 16px; /* 文字のサイズ */
@@ -621,7 +621,7 @@ bottom: 7px;
     color: #fb4433;
 }
  .q_answer {
-    width: 172px;
+    width: 190px;
     height: 58px;
     flex-shrink: 0;
     border-radius: 40px;
