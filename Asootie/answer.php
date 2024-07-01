@@ -25,7 +25,7 @@ require 'header.php';
     } elseif ($row['best_answer'] > 5) {
         $icon = "dinosaur2.png";
     }
-    echo '<img src="img/' . $icon . '" width="90" height="90">';
+    echo '<a href="view-profile.php?user_id=' . $row['user_id'] . '"><img src="img/' . $icon . '" width="90" height="90"></a>';
     echo '<div class="q_profile">', $row['name'], '　さん', '<br>';
     if ($row['status_id'] == 0) {
         echo    '<div class="box1">
