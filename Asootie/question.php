@@ -33,7 +33,11 @@ if (isset($_POST['kyokan'])) {
         } elseif ($row['best_answer'] > 5) {
             $icon = "dinosaur2.png";
         }
-        echo '<img src="img/' . $icon . '" width="90" height="90">';
+        if($row['user_id'] == $_SESSION['user_id']){
+            echo '<a href="profile.php"><img src="img/' . $icon . '" width="90" height="90"></a>';
+        }else{
+            echo '<a href="view-profile.php?user_id=' . $row['user_id'] . '"><img src="img/' . $icon . '" width="90" height="90"></a>';
+        }
         echo '<div class="q_profile">', $row['name'], '　さん', '<br>';
         if ($row['status_id'] == 0) {
             echo    '<div class="box1">
@@ -77,11 +81,14 @@ if (isset($_POST['kyokan'])) {
         echo '</div></div>';
         echo '<hr><br>';
         echo '<button class="check_answer" onclick="location.href=\'view-answer.php?q_id=' . $id . '\'">回答を見る</button>';
-        if ($row['flag'] == 0) {
+        if ($row['flag'] == 1) {
+            echo '<button class="q_answer">解決済み！</button>';
+        }else if($_SESSION['user_id'] == $row['q_user_id']){
+            
+        }else{
             echo '<button class="q_answer" onclick="location.href=\'answer.php?q_id=' . $id . '\'">回答をする</button>';
-        } else {
-            echo '<button class="q_answer">解決済み！</a></button>';
         }
+        
 
         ?>
     </div>
