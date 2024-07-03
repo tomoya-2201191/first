@@ -43,17 +43,6 @@ require 'header.php';
 
         $sql = $pdo->prepare('delete from question where q_id=?');
         $sql->execute([$row['q_id']]);    
-        ?>
-        <!-- 画面更新処理-->
-        <script language="javascript" type="text/javascript">
-            if (window.name != "any") {
-              location.reload();
-              window.name = "any";
-            } else {
-              window.name = "";
-            }
-        </script>
-        <?php
       }
     }
     echo '<hr>';
@@ -91,23 +80,26 @@ require 'header.php';
     if (isset($_POST['answerdelete'])) {
       $sql = $pdo->prepare('delete from answer where a_id=?');
       $sql->execute([$_POST['answer_id']]);
-      ?>
-      <!-- 画面更新処理-->
-      <script language="javascript" type="text/javascript">
-          if (window.name != "any") {
-            location.reload();
-            window.name = "any";
-          } else {
-            window.name = "";
-          }
-      </script>
-      <?php
     }
     echo '<hr>';
   }
+
   ?>
 </div>
 <?php
+  if (isset($_POST['questiondelete']) || isset($_POST['answerdelete'])) {
+    ?>
+    <!-- 画面更新処理-->
+    <script language="javascript" type="text/javascript">
+        if (window.name != "any") {
+          location.reload();
+          window.name = "any";
+        } else {
+          window.name = "";
+        }
+    </script>
+    <?php
+}
 require 'footer.php';
 ?>
 <script src="js/top.js"></script>
