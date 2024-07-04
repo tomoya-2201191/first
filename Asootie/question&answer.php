@@ -15,14 +15,14 @@ require 'header.php';
   <?php
   if (isset($_POST['questionalldelete'])) {
     $sql = $pdo->prepare('delete from answer where q_id in (select q_id from question where q_user_id = ?)');
-    $sql->execute([$_GET['id']]); // Deletes all answers for the user
+    $sql->execute([$_GET['id']]); // 全ての質問に対する回答を削除
 
     $sql = $pdo->prepare('delete from question where q_user_id=?');
-    $sql->execute([$_GET['id']]); // Deletes all questions for the user
+    $sql->execute([$_GET['id']]); // 全ての質問を削除
   }
   ?>
 
-  <?php // Display all questions for the user ?>
+  <?php // 質問をすべて表示 ?>
   <?php
   $sql = $pdo->prepare('select * from question where q_user_id=?');
   $sql->execute([$_GET['id']]);
@@ -30,13 +30,14 @@ require 'header.php';
     echo '<div class="qand_date">', $row['q_date'], '</div>';
     echo '<div class="qand_text">', $row['q_text'], '</div>';
 
-    // Form to delete this specific question
-    echo '<form method="post">
-        <input class="questiondelete" type="submit" name="questiondelete" value="削除" />
-        <input type="hidden" name="question_id" value="' . $row['q_id'] . '" /> </form>';
+    // この特定の質問を削除するためのフォーム
+    echo '<form method="post" onsubmit="return confirm(\'質問「' . $row['q_text'] . '」を削除しますか？\nこの操作は取り消せません。\');">';
+    echo '<input class="questiondelete" type="submit" name="questiondelete" value="削除">';
+    echo '<input type="hidden" name="question_id" value="' . $row['q_id'] . '" />';
+    echo '</form>';
 
     if (isset($_POST['questiondelete'])) {
-      // Check if the submitted question ID matches the current row's ID
+      // 送信された質問 ID が現在の行の ID と一致するかどうかを確認
       if ($_POST['question_id'] == $row['q_id']) {
         $sql = $pdo->prepare('delete from answer where q_id=?');
         $sql->execute([$row['q_id']]);
@@ -63,7 +64,7 @@ require 'header.php';
   }
   ?>
 
-  <?php // Display all answers for the user ?>
+  <?php // 全ての回答を表示 ?>
   <?php
   $sql = $pdo->prepare('select * from answer where a_user_id=?');
   $sql->execute([$_GET['id']]);
@@ -71,11 +72,11 @@ require 'header.php';
     echo '<div class="aand_date">', $row['a_date'], '</div>';
     echo '<div class="aand_text">', $row['a_text'], '</div>';
 
-    // Form to delete this specific answer
-    echo '<form method="post">
-          <input class="answerdelete" type="submit" name="answerdelete" value="削除" />
-          <input type="hidden" name="answer_id" value="' . $row['a_id'] . '" />
-          </form>';
+    // この特定の回答を削除するためのフォーム
+    echo '<form method="post" onsubmit="return confirm(\'回答「' . $row['a_text'] . '」を削除しますか？\nこの操作は取り消せません。\');">';
+    echo '<input class="answerdelete" type="submit" name="answerdelete" value="削除">';
+    echo '<input type="hidden" name="answer_id" value="' . $row['a_id'] . '" />';
+    echo '</form>';
 
     if (isset($_POST['answerdelete'])) {
       $sql = $pdo->prepare('delete from answer where a_id=?');
