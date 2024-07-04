@@ -130,7 +130,9 @@ body {
     color: #000;
 }
 .a_color{
-    color: black;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
 }
 .delete-user {
     background-color: #E65555; /* ボタンの背景色 */
@@ -147,4 +149,97 @@ body {
 .delete-user a {
     color: #fff; /* リンクの色 */
     text-decoration: none;
+}
+
+.p_box1 {
+    width: 190px;
+    height: 32px;
+    /*flex-shrink: 0;*/
+    background: lightcoral;
+  }
+.p_box2{
+   width: 170px;
+   height: 32px;
+   background:#E5D1FF;
+ }
+.p_box3{
+   width: 125px;
+   height: 32px;
+   background: lightgreen;
+ }
+ .p_box4{
+    width: 150px;
+    height: 32px;
+    background: black;
+ }
+
+ .p_status1 {
+    position: absolute;
+    transform: translate(20%, 20%);
+    font-size: 20px;
+    color: #000;
+}
+
+.p_status2 {
+    position: absolute;
+    transform: translate(20%, 20%);
+    font-size: 20px;
+    color: #000;
+}
+
+.p_status3 {
+    position: absolute;
+    transform: translate(12.5%, 20%);
+    font-size: 20px;
+    color: #000;
+}
+.p_status4{
+   position: absolute;
+    transform: translate(12.5%, 20%);
+    font-size: 20px;
+    color: #FFF;
+}
+
+.delete_button {
+    display: inline-block; /* インラインブロックに変更 */
+    padding: 10px 20px; /* パディングを追加 */
+    background-color: red; /* 背景色を変更 */
+    color: white; /* テキストの色を赤に変更 */
+    text-decoration: none; /* 下線を削除 */
+    border-radius: 5px; /* 角を丸くする */
+    text-align: center; /* テキストを中央揃えに */
+    cursor: pointer; /* ポインターの変更 */
+    margin-top: 40px;
+    margin-left: 500px;
+}
+
+.delete_button:hover {
+    background-color: #e0e0e0; /* ホバー時の背景色 */
+}
+.h2{
+    text-align: center;
+}
+.check_answer {
+    width: 190px;
+    height: 58px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: white; /* 背景を白に設定 */
+    border: 2px solid #4dc7fa; 
+    color:#4dc7fa;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-left: 385px;
+    text-align: center; /* 文字を中央揃えに */
+    line-height: 58px; /* ボタンの高さと同じにして文字を中央に垂直配置 */
+    font-size: 16px; /* 文字のサイズ */
+    font-weight: bold; /* 文字を太字に */
+    text-transform: uppercase; /* 文字を大文字に */
+    cursor: pointer; /* カーソルをポインタに変更 */
+    margin-bottom: 10px;
+}
+
+/* .check_answer ボタンのホバー時のスタイル */
+.check_answer:hover {
+    background: #4dc7fa; 
+    color: white; /* ホバー時の文字色を白に設定 */
 }

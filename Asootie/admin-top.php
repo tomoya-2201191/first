@@ -14,6 +14,7 @@ require 'db-connect.php';
     <title>管理者トップ</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/admin-style.css">
+    
     <!--link rel="stylesheet" href="css/style.css"> -->
     <!-- <link rel="stylesheet" href="css/fade.css">  -->
 </head>
@@ -35,8 +36,16 @@ require 'db-connect.php';
         $sql = $pdo->query('select * from user');
         foreach($sql as $row){
             echo '<div class="q_user">';
-            echo '<a href="user-profile.php?user_id=' . $row['user_id'] . '"><img src="img/icon.png" height="80" width="110"></a>';
-            echo '<div class="q_profile"><a href="user-profile.php?user_id=' . $row['user_id'] . '">', $row['name'], '　さん</a><br>';
+            $icon = "dinosaur1.png";
+            if ($row['best_answer'] > 20) {
+                $icon = "dinosaur4.png";
+            } elseif ($row['best_answer'] > 10) {
+                $icon = "dinosaur3.png";
+            } elseif ($row['best_answer'] > 5) {
+                $icon = "dinosaur2.png";
+            }            
+            echo '<img src="img/' . $icon . '" width="90" height="90"></a>';
+            echo '<div class="q_profile"> ',$row['name'] ,'　さん</a><br>';
             if ($row['status_id'] == 0) {
                 echo    '<div class="box1">
                         <div class="status1">STUDENT</div>
@@ -51,7 +60,7 @@ require 'db-connect.php';
                         </div>';
             }
             echo '</div>';
-            echo '<button class="delete-user"><a class="a_color" href="#?user_id=' . $row['user_id'] . '">このユーザーを削除する></a></button>';
+            echo '<button class="delete-user"><a class="a_color" href="admin-user-profile.php?user_id=' . $row['user_id'] . '">プロフィールへ></a></button>';
             echo '</div>';
             echo '<hr>';
         }
