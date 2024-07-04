@@ -60,9 +60,9 @@ if (!$user) {
             unset($_SESSION['update_error']['email']);
         }
         ?><br>
-        <label for="password">新しいパスワード (空の場合は変更されません):</label>
+        <label for="password">新しいpassword (空の場合は変更されません):</label>
         <input type="password" id="password" name="password"><br><br>
-        <label for="confirm_password">パスワード確認:</label>
+        <label for="confirm_password">確認用　password:</label>
         <input type="password" id="confirm_password" name="confirm_password"><br><br>
         <input type="submit" value="更新">
     </form>
