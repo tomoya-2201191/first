@@ -78,13 +78,14 @@ require 'header.php';
     echo '</div>';
     $id = $_SESSION['user_id'];
     //ボタン//
-    echo '<button class="question_answer"><a class="a_color" href="question&answer.php?id=' . $id . '">質問＆回答一覧＞</a></button>';
-    echo '<button class="user_up"><a class="a_color" href="customer-update-input.php?id=' . $id . '">個人情報更新＞</a></button>';
+    echo '<button class="question_answer" onclick="location.href=\'question&answer.php?id=' . $id . '\'">質問＆回答一覧＞</button>';
+    echo '<button class="user_up" onclick="location.href=\'customer-update-input.php?id=' . $id . '\'">個人情報更新＞</button>';
+    
     ?>
 </div>
-<?php
-echo '<button class="logout"><a class="a_color" href="logout.php">ログアウト＞</a></button>';
-?>
+
+<button class="logout" onclick="location.href='logout.php'">ログアウト＞</button>
+
 <script src="js/top.js"></script>
 </body>
 

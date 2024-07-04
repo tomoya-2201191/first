@@ -1,6 +1,4 @@
 <?php
-session_start();
-require 'db-connect.php';
 require 'header.php';
 ?>
 <link rel="stylesheet" href="css/question&answer.css">

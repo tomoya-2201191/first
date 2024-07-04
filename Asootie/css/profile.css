@@ -119,19 +119,32 @@
     height: 58px;
     flex-shrink: 0;
     border-radius: 40px;
-    background: #B5E5FA;
+    background: #FFFFFF; /* 背景色を白に設定 */
+    color: black;
+    border: 2px solid #B5E5FA;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin-left: 52%;
     margin-top: 5%;
+    transition: background 0.3s; /* 背景色の変化にアニメーションを追加 */
 }
 
+.question_answer:hover {
+    background: #B5E5FA; /* ホバー時の背景色を設定 */
+    color: white;
+}
 .user_up {
     width: 172px;
     height: 58px;
     flex-shrink: 0;
     border-radius: 40px;
-    background: #c6e326;
+    background: white;
+    border: 2px solid #c6e326;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    transition: background 0.3s; /* 背景色の変化にアニメーションを追加 */
+}
+.user_up:hover{
+    background: #c6e326;
+    color: white;
 }
 
 .logout {
@@ -139,7 +152,14 @@
     height: 58px;
     flex-shrink: 0;
     border-radius: 40px;
-    background: #fb4433;
+    background: white;
+    color: #fb4433;
+    border: 2px solid #fb4433;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin-left: 65%;
+    transition: background 0.3s; /* 背景色の変化にアニメーションを追加 */
+}
+.logout:hover{
+    background: #fb4433;
+    color: white;
 }
