@@ -183,14 +183,12 @@ $sql->execute();
         </div>
 
         <div class="ranking">
-
             <p class="ranking-p">共感RANKING</p>
             <ol class="ranking-ol">
-
                 <hr>
                 <?php
                 // ランキング用のクエリを作成する
-                $ranking_query = 'SELECT * FROM question JOIN category ON question.category_id = category.category_id WHERE flag = 0 ORDER BY feel DESC LIMIT 5'; // 例: 上位5件のランキング
+                $ranking_query = 'SELECT * FROM question JOIN category ON question.category_id = category.category_id ORDER BY feel DESC LIMIT 5'; // 例: 上位5件のランキング
                 $ranking_stmt = $pdo->query($ranking_query);
                 $rank = 1;
                 foreach ($ranking_stmt as $row) {
@@ -198,7 +196,6 @@ $sql->execute();
                     echo '<span class="rank-number">', $rank, '.</span>';
                     echo '<span class="rank-question"><a class="ranking-a" href="question.php?id=', $row['q_id'], '">', htmlspecialchars($row['q_text']), '</a></span>';
                     echo '<hr class="ranking-hr">';
-
                     echo '</li>';
                     $rank++;
                 }
