@@ -4,8 +4,19 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 require 'db-connect.php';
 
-    $sql = $pdo->prepare('delete from user where user_id=?');
+    // Delete from answer table
+    $sql = $pdo->prepare('DELETE FROM answer WHERE a_user_id = ?');
     $sql->execute([$_GET['user_id']]);
+
+    // Delete from question table
+    $sql = $pdo->prepare('DELETE FROM question WHERE q_user_id = ?');
+    $sql->execute([$_GET['user_id']]);
+
+    // Delete from user table
+    $sql = $pdo->prepare('DELETE FROM user WHERE user_id = ?');
+    $sql->execute([$_GET['user_id']]);
+
+    //$pdo->commit();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
