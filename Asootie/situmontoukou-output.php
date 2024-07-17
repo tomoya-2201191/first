@@ -111,30 +111,30 @@ require 'header.php';
             echo '<img src="img/coin.png" height="50" width="50">';
             echo '<br>';
             echo '<div class="coin-text">',$row['question_coin'],"コイン<br></div></div>";
+            echo '<button class="back" onclick="location.href=\'top.php\'">トップへ戻る</button>';
                 ?>
 
     </div>
 
     <div class="right">
+            <?php
+            $sql = $pdo->query('SELECT * FROM category');
+            echo '<div class="category">';
+            echo '<br>', '　カテゴリ一覧';
+            echo '</div>';
+            echo '<hr>';
 
-        <?php
+            echo '<ul class="category_box">';
+            foreach ($sql as $row) {
+                $id = $row['category_id'];
+                echo '<li><a class="category-black" href="?id=', $id, '">', htmlspecialchars($row['category_name']), "</a></li>";
+                echo '<br>';
+            }
+            echo "</ul>";
 
-        echo '<div class="category">';
-        $sql = $pdo->query('SELECT * FROM category');
-        echo '<br>', '　カテゴリ一覧';
-        echo '<hr>';
-        echo '<ul>';
-        foreach ($sql as $row) {
-            $id = $row['category_id'];
-            echo '<li><a class="category-black" href="top.php?id=', $id, '">', htmlspecialchars($row['category_name']), "</a></li>";
-            echo '<br>';
-        }
-        echo "</ul>";
-        echo '<hr>';
-        ?>
-
+            echo '<hr>';
+            ?>
     </div>
-</div>
 </div>
 
 <?php

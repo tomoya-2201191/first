@@ -86,7 +86,6 @@ require 'header.php';
 
 <button class="logout" onclick="location.href='logout.php'">ログアウト＞</button>
 
-<script src="js/top.js"></script>
-</body>
-
-</html>
+<?php
+require 'footer.php';
+?>

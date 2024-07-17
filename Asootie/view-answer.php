@@ -98,25 +98,26 @@ if (isset($_POST['sankou'])) {
 
 
 <div class="right">
-    <?php
-    echo '<div class="category">';
-    $sql=$pdo->query('select * from category');
-    echo '<br>','　カテゴリ一覧';
-    echo '<hr>';
-    echo '<ul>';
-    foreach ($sql as $row) {
-        $id=$row['category_id'];
-        echo '<li><a class="category-black" href="top.php?id=', $id, '">', $row['category_name'], "</a></li>";
-        echo '<br>';
-    }
-    echo "</ul>";
-    echo '<hr>';
-    
-    ?>
-</div>
+            <?php
+            $sql = $pdo->query('SELECT * FROM category');
+            echo '<div class="category">';
+            echo '<br>', '　カテゴリ一覧';
+            echo '</div>';
+            echo '<hr>';
+
+            echo '<ul class="category_box">';
+            foreach ($sql as $row) {
+                $id = $row['category_id'];
+                echo '<li><a class="category-black" href="?id=', $id, '">', htmlspecialchars($row['category_name']), "</a></li>";
+                echo '<br>';
+            }
+            echo "</ul>";
+
+            echo '<hr>';
+            ?>
+        </div>
 
 </div>
-    <script src="js/top.js"></script> <!-- JavaScriptファイルの読み込み -->
-</body>
-
-</html>
+<?php
+require 'footer.php';
+?>
